@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-
-    <router-view></router-view>
+    <Header></Header>
+    <div>
+      <recommend></recommend>
+    </div>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <script>
+import Header from './components/header/header'
+import recommend from './components/recommend/recommend'
+
   export default {
-    name: 'ele-vue-learning'
+    name: 'ele-vue-learning',
+    components:{Header,recommend}
     
   }
 </script>
