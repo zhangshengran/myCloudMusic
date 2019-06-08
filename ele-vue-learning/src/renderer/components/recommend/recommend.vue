@@ -36,7 +36,7 @@ export default {};
    .recommend{
        width: 250px;
        background-color: $back;
-       height: 100vh;
+       height:calc(100vh - 60px);
        p{
            line-height: 40px;
            color: #7d7d7d;
