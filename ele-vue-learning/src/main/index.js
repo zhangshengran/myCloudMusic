@@ -22,6 +22,9 @@ function createWindow () {
   /**
    * Initial window options
    */
+  BrowserWindow.addDevToolsExtension("C:/Users/wo/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
+ 
+
 
   mainWindow = new BrowserWindow({
     height: 670,

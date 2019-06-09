@@ -9,11 +9,21 @@
         <i class="iconfont iconzuojiantou"></i>
         <i class="iconfont iconarrow-right"></i>
       </div>
+      <!-- @blur="isShowModel=false" -->
       <div class="right no-drag">
-        <input type="text" v-model="input" placeholder="搜索音乐，视频，歌词，电台" @click="getHot">
-        <!-- <el-input v-model="input" placeholder="搜索音乐，视频，歌词，电台" @click="isShowModel=true"></el-input> -->
+        <input type="text"
+         v-model="input" 
+         placeholder="搜索音乐，视频，歌词，电台" 
+         @click="getHot" 
+         @blur="isShowModel=false"
+         @focus="isShowModel=true">
         <i class="iconfont iconsearch" @click="handleChange"></i>
-        <headerSearch v-if="isShowModel" :songList="songList" :hotList="hotList"></headerSearch>
+        <headerSearch
+         v-show="isShowModel" 
+         :songList="songList" 
+         @songName='getSongName'
+         :hotList="hotList">
+         </headerSearch>
       </div>
     </div>
     <div class="header-right">
@@ -56,30 +66,38 @@ export default {
   },
   watch: {
     input: function(val) {
-      debounce(this.handleChange, 500)(val);
+      debounce(this.handleChange, 200)(val);
     }
   },
   methods: {
+    test(e){
+    
+    },
+    getSongName(e){
+     console.log('父组件收到',e)
+      this.input = e;
+
+       this.isShowModel=false;
+    },
     getHot() {
-      this.isShowModel = !this.isShowModel;
+    
       http.get("/search/hot").then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.hotList = data.result.hots;
       });
     },
     handleChange(val) {
       if (val) {
-        console.log("123", val);
+        // console.log("123", val);
         http.get("/search", { keywords: val }).then(({ data }) => {
           this.songList = data.result.songs;
-        })
-      }else{
-         this.songList = [];
+        });
+      } else {
+        this.songList = [];
       }
     },
-    closeModel() {
-      isShowModel = false;
-    },
+  
+
     min() {
       ipc.send("min");
     },
@@ -168,6 +186,9 @@ $red: #c62f2f;
         color: #c77373;
         line-height: 27px;
       }
+       .iconsearch:hover{
+         color:white;
+       }
     }
   }
   .header-right {

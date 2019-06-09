@@ -1,6 +1,7 @@
 <template>
   <div class="modal">
     <i class="iconfont iconshangjiantou" style="position:absolute;top:-15px;left:30px;color:white"></i>
+    <i class="iconfont "></i>
     <div class="modal-left">
       <header>
         <i class="iconfont iconfenxiang"></i>
@@ -8,13 +9,13 @@
       </header>
       <div v-if="songList2.length!=0">
         <div v-for="(item,index) in  songList2" :key="index" class="ltem">
-          <div>{{item.name}}</div>
+          <div @mousedown="emitSong(item.name)">{{item.name}}</div>
           <div v-if="item.artists.name">{{item.artists.name}}</div>
         </div>
       </div>
       <div v-if="songList2.length==0">
         <div v-for="(item,index) in  hotList2" :key="index" class="ltem">
-          <div>{{item.first}}</div>
+          <div @mousedown="emitSong(item.first)">{{item.first}}</div>
         </div>
       </div>
     </div>
@@ -70,7 +71,13 @@ export default {
         this.hotList2 = val;
       }
     }
-  }
+  },methods: {
+    emitSong(songName){
+      console.log('子组件发送')
+    
+      this.$emit('songName',songName)
+    }
+  },
 };
 </script> 
 <style <style lang='scss'>
