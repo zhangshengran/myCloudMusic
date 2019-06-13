@@ -10,9 +10,9 @@
         <i class="iconfont iconarrow-right"></i>
       </div>
       <div class="right no-drag">
-        <input type="text" v-model="input" placeholder="搜索音乐，视频，歌词，电台" @click="getHot">
+        <input type="text" v-model="input" @keyup.enter="searchClick" placeholder="搜索音乐，视频，歌词，电台" @click="getHot"  >
         <!-- <el-input v-model="input" placeholder="搜索音乐，视频，歌词，电台" @click="isShowModel=true"></el-input> -->
-        <i class="iconfont iconsearch" @click="handleChange"></i>
+        <i class="iconfont iconsearch" @click="searchClick"></i>
         <headerSearch v-if="isShowModel" :songList="songList" :hotList="hotList"></headerSearch>
       </div>
     </div>
@@ -56,10 +56,13 @@ export default {
   },
   watch: {
     input: function(val) {
-      debounce(this.handleChange, 500)(val);
+      debounce(this.searchHandleChange, 500)(val);
     }
   },
   methods: {
+    searchClick(){
+
+    },
     getHot() {
       this.isShowModel = !this.isShowModel;
       http.get("/search/hot").then(({ data }) => {
@@ -67,7 +70,7 @@ export default {
         this.hotList = data.result.hots;
       });
     },
-    handleChange(val) {
+    searchHandleChange(val) {
       if (val) {
         console.log("123", val);
         http.get("/search", { keywords: val }).then(({ data }) => {
@@ -100,7 +103,7 @@ export default {
   //用来控制禁止拖放的地方
   -webkit-app-region: no-drag;
 }
-$red: #c62f2f;
+
 .header {
   color: #eec1c1;
   position: relative;
