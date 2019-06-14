@@ -107,7 +107,7 @@ export default {
 .header {
   color: #eec1c1;
   position: relative;
-  height: 60px;
+  height: 52px;
   background-color: $red;
   display: flex;
   .header-left {

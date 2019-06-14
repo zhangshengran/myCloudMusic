@@ -64,6 +64,7 @@ export default {};
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 .middle-container {
+  width: 100%;
   height: calc(100vh - 60px);
   //    background-color: aqua;
 //   min-width: 800px;
