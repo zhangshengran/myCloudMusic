@@ -11,13 +11,21 @@
       </div>
       <!-- @blur="isShowModel=false" -->
       <div class="right no-drag">
-        <input type="text"
+        <input 
+         type="text"
+         v-model="input"
+          placeholder="搜索音乐，视频，歌词，电台"
+			@keyup.enter="searchClick"
+          @click="getHot">
+        <!-- <el-input v-model="input" placeholder="搜索音乐，视频，歌词，电台"   @click="isShowModel=true"></el-input> -->
+		 <input type="text"
          v-model="input" 
          placeholder="搜索音乐，视频，歌词，电台" 
          @click="getHot" 
          @blur="isShowModel=false"
          @focus="isShowModel=true">
-        <i class="iconfont iconsearch" @click="handleChange"></i>
+       
+        <i class="iconfont iconsearch" @click="searchClick"></i>
         <headerSearch
          v-show="isShowModel" 
          :songList="songList" 
@@ -66,27 +74,27 @@ export default {
   },
   watch: {
     input: function(val) {
-      debounce(this.handleChange, 200)(val);
-    }
+      debounce(this.handleChange, 200)(val);    }
   },
   methods: {
-    test(e){
-    
+test(e){
+        searchClick(){
+
+    },
     },
     getSongName(e){
      console.log('父组件收到',e)
       this.input = e;
 
        this.isShowModel=false;
-    },
-    getHot() {
+    },    getHot() {
     
       http.get("/search/hot").then(({ data }) => {
         // console.log(data);
         this.hotList = data.result.hots;
       });
     },
-    handleChange(val) {
+    searchHandleChange(val) {
       if (val) {
         // console.log("123", val);
         http.get("/search", { keywords: val }).then(({ data }) => {
@@ -118,11 +126,12 @@ export default {
   //用来控制禁止拖放的地方
   -webkit-app-region: no-drag;
 }
-$red: #c62f2f;
+
 .header {
   color: #eec1c1;
   position: relative;
-  height: 60px;
+ 
+  height: 52px;
   background-color: $red;
   display: flex;
   .header-left {

@@ -1,5 +1,7 @@
 <template>
-
+<div class="foundsong">
+    foundsong
+</div>
 
 </template>
 
@@ -10,7 +12,9 @@ export default {};
    @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 
-  
+//   .foundsong{
+    
+//   }
 </style>
  
 
