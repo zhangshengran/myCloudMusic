@@ -14,8 +14,10 @@ Vue.timer = null;
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 /* eslint-disable no-new */
-
-
+// console.log(store)
+// store.dispatch('setChooseSong','123')
+// store.commit('setChooseSong',123)
+// console.log(store.state.chooseSong)
 new Vue({
   components: { App },
   router,

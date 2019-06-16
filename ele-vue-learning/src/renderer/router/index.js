@@ -14,7 +14,11 @@ export default new Router({
       redirect: '/foundsong'
      
     },
-    
+    {
+      path: '/searchmain',
+      name: 'searchMain',
+      component: searchMain
+    },
     {
       path: '/foundsong',
       name: 'foundsong',

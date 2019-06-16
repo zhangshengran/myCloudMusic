@@ -9,7 +9,7 @@
       </header>
       <div v-if="songList2.length!=0">
         <div v-for="(item,index) in  songList2" :key="index" class="ltem">
-          <div @mousedown="emitSong(item.name)">{{item.name}}</div>
+          <div v-if="item.name" @mousedown="emitSong(item.name)">{{item.name}}</div>
           <div v-if="item.artists.name">{{item.artists.name}}</div>
         </div>
       </div>
@@ -56,15 +56,15 @@ export default {
   },
   watch: {
     songList(val) {
-      console.log(val);
+      console.log('子组件获取到搜索',val);
       if (val.length != 0) {
-        this.songList2 = val.slice(0, 13);
+        this.songList2 = val;
       } else {
         this.songList2 = val;
       }
     },
     hotList(val) {
-      console.log(val);
+      console.log('子组件获取到热搜',val);
       if (val.length != 0) {
         this.hotList2 = val.slice(0);
       } else {
@@ -75,7 +75,7 @@ export default {
     emitSong(songName){
       console.log('子组件发送')
     
-      this.$emit('songName',songName)
+      this.$emit('resongName',songName)
     }
   },
 };
