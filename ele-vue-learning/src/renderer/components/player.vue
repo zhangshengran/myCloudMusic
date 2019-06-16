@@ -12,16 +12,49 @@
       </div>
     </div>
     <div class="middle">
-      <audio>
-       
-        <source src="horse.mp3" type="audio/mpeg">
+      <audio controls>
+        <source :src="this.url" type="audio/mpeg">
+        <!-- <source
+          src="http://m10.music.126.net/20190617000748/41365e6c66a6db1e1931df6c6411fa88/ymusic/035e/030e/075b/44dac57aa74d83feae0201e1b7b7243e.mp3"
+          type="audio/mpeg"
+        > -->
       </audio>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState, mapMutations, mapActions } from "vuex";
+import http from "../api";
+export default {
+  data() {
+    return {
+      url: ""
+    };
+  },
+  computed: {
+    ...mapState(["songList", "musicIndex"])
+  },
+  mounted() {
+    console.log("player", this.songList);
+  },
+  watch: {
+    musicIndex(musicIndex) {
+      console.log("拿到的index为", musicIndex);
+      console.log(this.songList[this.musicIndex].id);
+      this.getMusicURL(this.songList[this.musicIndex].id);
+    }
+  },
+  methods: {
+    getMusicURL(musicIndex) {
+      http.get("/song/url", { id: musicIndex }).then(({ data }) => {
+        console.log(data);
+        this.url = data.data[0].url;
+        console.log("拿到的url为", this.url);
+      });
+    }
+  }
+};
 </script>
 <style <style lang='scss'>
 @import "../assets/common/common.scss";

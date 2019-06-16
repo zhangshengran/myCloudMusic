@@ -4,6 +4,9 @@ const mutations = {
     },
     setSonglist(state,songList){
         state.songList = songList;
+    },
+    setMusicIndex(state,musicIndex){
+        state.musicIndex = musicIndex;
     }
 }
 

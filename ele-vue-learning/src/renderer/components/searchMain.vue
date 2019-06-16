@@ -10,39 +10,41 @@
           <th style="min-width:120px">歌手</th>
           <th style="min-width:150px">专辑</th>
           <th style="min-width:65px">时长</th>
-          <th >热度</th>
+          <th>热度</th>
         </tr>
-        <tr v-for="(item, index) in songList" :key="index">
+        <tr v-for="(item, index) in songList" :key="index" @click="chooseMusic(index)">
           <td>{{index}}</td>
           <td class="heartDown">
             <i class="iconfont iconxin"></i>
             <i class="iconfont iconxiazai"></i>
           </td>
-          <td>{{item.name}}</td>
+          <td >{{item.name}}</td>
           <td>{{item.artists[0].name}}</td>
           <td>{{item.album.name}}</td>
           <td>{{item.duration}}</td>
           <td>
-          {{item.fee}}
-           <!-- <el-progress :percentage="50" color="gray"></el-progress><-->
+            {{item.fee}}
+            <!-- <el-progress :percentage="50" color="gray"></el-progress><-->
           </td>
         </tr>
-
-       
-
-      
       </table>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState,mapMutations,mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
-  computed:{
-          ...mapState(['songList'])//拿到vuex中的搜索结果列表
+  methods: {
+    ...mapMutations(['setMusicIndex']),
+    chooseMusic(musicIndex){
+      console.log(musicIndex)
+        this.setMusicIndex(musicIndex)
+    }
   },
-  
+  computed: {
+    ...mapState(["songList"]) //拿到vuex中的搜索结果列表
+  }
 };
 </script>
  <style lang='scss'>
@@ -52,8 +54,10 @@ export default {
 .middle-container {
   width: 100%;
   height: calc(100vh - 60px);
+  overflow: scroll;
   //    background-color: aqua;
-//   min-width: 800px;
+  //   min-width: 800px;
+
   .middle-header {
     padding: 30px;
   }

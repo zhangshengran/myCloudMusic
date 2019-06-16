@@ -4,8 +4,8 @@
 
 
 const state = {
-    chooseSong:'',
-    songList:[2,3,4],
+    songList:[],//搜索出來的列表
+    musicIndex:'',//播放的是列表的第几個
     userInfo:{
         userName:'',
         userId:'',

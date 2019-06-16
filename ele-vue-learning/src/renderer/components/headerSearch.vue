@@ -7,7 +7,6 @@
         <i class="iconfont iconfenxiang"></i>
         <div>热门搜索</div>
       </header>
-      
         <div v-if="searchSong">
         <div v-for="(item,index) in  songList.albums" :key="index" class="ltem">
           <div @mousedown="emitSong(item.name)" v-if="item.name">{{item.name}}</div>
@@ -18,9 +17,6 @@
           <div @mousedown="emitSong(item.first)">{{item.first}}</div>
         </div>
       </div>
-
-
-
     </div>
 
     <div class="modal-right">

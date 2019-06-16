@@ -112,7 +112,6 @@ export default {
              this.getSongList(this.input)
              this.$router.push('./searchmain')
              this.isShowModel = false;
-            //  console.log(this.chooseSong)
            
         },
         test(e) {
