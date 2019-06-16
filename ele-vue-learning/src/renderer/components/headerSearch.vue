@@ -7,17 +7,20 @@
         <i class="iconfont iconfenxiang"></i>
         <div>热门搜索</div>
       </header>
-      <div v-if="songList2.length!=0">
-        <div v-for="(item,index) in  songList2" :key="index" class="ltem">
-          <div v-if="item.name" @mousedown="emitSong(item.name)">{{item.name}}</div>
-          <div v-if="item.artists.name">{{item.artists.name}}</div>
+      
+        <div v-if="searchSong">
+        <div v-for="(item,index) in  songList.albums" :key="index" class="ltem">
+          <div @mousedown="emitSong(item.name)" v-if="item.name">{{item.name}}</div>
         </div>
       </div>
-      <div v-if="songList2.length==0">
-        <div v-for="(item,index) in  hotList2" :key="index" class="ltem">
+      <div v-if="!searchSong">
+        <div v-for="(item,index) in  hotList" :key="index" class="ltem">
           <div @mousedown="emitSong(item.first)">{{item.first}}</div>
         </div>
       </div>
+
+
+
     </div>
 
     <div class="modal-right">
@@ -32,50 +35,40 @@
 <script>
 import { constants } from "fs";
 import { connect } from "tls";
+import debounce from "../utils/utils";
+import http from '../api'
 export default {
-  props: {
-    songList: {
-      type: Array,
-      default: function() {
-        return [];
-      }
-    },
-    hotList: {
-      type: Array,
-      default: function() {
-        return [];
-      }
-    }
-  },
+  props: ['searchSong'],
+    mounted() {
+       http.get("/search/hot").then(({ data }) => {
+                this.hotList = data.result.hots;
+              console.log(this.hotList)
 
+            });
+    },
   data() {
     return {
-      songList2: [],
-      hotList2: []
+      songList:{},
+      hotList: [],
+      ownSearchName:''
     };
   },
   watch: {
-    songList(val) {
-      console.log('子组件获取到搜索',val);
-      if (val.length != 0) {
-        this.songList2 = val;
-      } else {
-        this.songList2 = val;
-      }
-    },
-    hotList(val) {
-      console.log('子组件获取到热搜',val);
-      if (val.length != 0) {
-        this.hotList2 = val.slice(0);
-      } else {
-        this.hotList2 = val;
-      }
-    }
+      searchSong(val){//searchSong为父组件发来的props
+      
+         debounce(()=>{this.ownSearchName=val; 
+          http.get("/search/suggest", { keywords: val }).then(({ data }) => {
+                    this.songList = data.result;
+                });
+          console.log(this.ownSearchName)}, 300)(val)
+      },
+        
+    
   },methods: {
     emitSong(songName){
       console.log('子组件发送')
     
-      this.$emit('resongName',songName)
+      this.$emit('chooseMusic',songName)
     }
   },
 };
@@ -98,11 +91,7 @@ export default {
       display: flex;
       align-items: center;
       line-height: 26px;
-      // .iconsearch{
-      //   position: static;
-      //   width: 16px;
-      //   height: 17.6px;
-      // }
+    
     }
   }
   .modal-right {

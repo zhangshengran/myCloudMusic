@@ -32,7 +32,7 @@
     
                 <i class="iconfont iconsearch" @click="searchClick"></i>
     
-                <headerSearch v-show="isShowModel" :songList="songList" @songName='getSongName' :hotList="hotList">
+                <headerSearch v-show="isShowModel" :searchSong="this.input" @chooseMusic='getSongName'>
     
                 </headerSearch>
     
@@ -99,15 +99,11 @@ export default {
         return {
             input: "",
             isShowModel: false, //控制搜索模态框是否显示
-            hotList: [],//热搜推荐列表
-            songList: []//搜索关键词推荐列表
+         
         };
     },
     watch: {
-        input: function(val) {
-            debounce(this.searchHandleChange, 200)(val);
-            // this.setChooseSong(val)//设置state中的chooseSong状态
-        }
+       
     },
     methods: {
         ...mapActions(['getSongList']),
@@ -115,6 +111,7 @@ export default {
         searchClick() {
              this.getSongList(this.input)
              this.$router.push('./searchmain')
+             this.isShowModel = false;
             //  console.log(this.chooseSong)
            
         },
@@ -135,17 +132,7 @@ export default {
                 this.hotList = data.result.hots;
             });
         },
-        searchHandleChange(val) {//获得搜索建议接口
-            if (val) {
-                // console.log("123", val);
-                http.get("/search/suggest", { keywords: val }).then(({ data }) => {
-                    console.log('父组件获取到搜索',data)
-                    this.songList = data.result.albums;
-                });
-            } else {
-                this.songList = [];
-            }
-        },
+       
 
 
         min() {
@@ -258,7 +245,7 @@ export default {
         }
     }
     .header-control {
-        height: 60px;
+        height: 52px;
         position: absolute;
         right: 15px;
         display: flex;

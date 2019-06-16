@@ -12,57 +12,43 @@
           <th style="min-width:65px">时长</th>
           <th >热度</th>
         </tr>
-        <tr>
-          <td>01</td>
+        <tr v-for="(item, index) in songList" :key="index">
+          <td>{{index}}</td>
           <td class="heartDown">
             <i class="iconfont iconxin"></i>
             <i class="iconfont iconxiazai"></i>
           </td>
-          <td>我曾</td>
-          <td>隔壁老樊</td>
-          <td>我曾</td>
-          <td>04:45</td>
+          <td>{{item.name}}</td>
+          <td>{{item.artists[0].name}}</td>
+          <td>{{item.album.name}}</td>
+          <td>{{item.duration}}</td>
           <td>
-            <el-progress :percentage="50" color="gray"></el-progress>
+          {{item.fee}}
+           <!-- <el-progress :percentage="50" color="gray"></el-progress><-->
           </td>
         </tr>
 
-        <tr>
-          <td>01</td>
-          <td>
-            <i class="iconfont iconxin"></i>
-            <i class="iconfont iconxiazai"></i>
-          </td>
-          <td>我曾</td>
-          <td>隔壁老樊</td>
-          <td>我曾</td>
-          <td>04:45</td>
-          <td></td>
-        </tr>
+       
 
-        <tr>
-          <td>01</td>
-          <td>
-            <i class="iconfont iconxin"></i>
-            <i class="iconfont iconxiazai"></i>
-          </td>
-          <td>我曾</td>
-          <td>隔壁老樊</td>
-          <td>我曾</td>
-          <td>04:45</td>
-          <td></td>
-        </tr>
+      
       </table>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState,mapMutations,mapActions } from 'vuex'
+export default {
+  computed:{
+          ...mapState(['songList'])//拿到vuex中的搜索结果列表
+  },
+  
+};
 </script>
  <style lang='scss'>
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
+
 .middle-container {
   width: 100%;
   height: calc(100vh - 60px);
