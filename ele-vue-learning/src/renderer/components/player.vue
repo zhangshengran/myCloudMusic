@@ -5,35 +5,41 @@
         <i class="iconfont test iconshangyiqu" style="font-size:20px"></i>
       </div>
       <div>
-        <i class="iconfont iconplay1" style="font-size:30px"></i>
+        <i class="iconfont iconplay1" style="font-size:30px" @click="playMusic"></i>
       </div>
       <div>
         <i class="iconfont iconxiayiqu" style="font-size:20px"></i>
       </div>
     </div>
     <div class="middle">
-      <audio controls>
+      <!-- <audio controls>
         <source :src="this.url" type="audio/mpeg">
-        <!-- <source
+        <source
           src="http://m10.music.126.net/20190617000748/41365e6c66a6db1e1931df6c6411fa88/ymusic/035e/030e/075b/44dac57aa74d83feae0201e1b7b7243e.mp3"
           type="audio/mpeg"
-        > -->
-      </audio>
+        >
+      </audio> -->
+      <vueAudio 
+      :isPlay='this.isPlay'
+      :theUrl='this.songUrl'
+      ></vueAudio>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
+import vueAudio from './vueAudio'
 import http from "../api";
 export default {
+  components:{vueAudio},
   data() {
     return {
       url: ""
     };
   },
   computed: {
-    ...mapState(["songList", "musicIndex"])
+    ...mapState(["songList", "musicIndex",'isPlay','songUrl'])
   },
   mounted() {
     console.log("player", this.songList);
@@ -46,13 +52,19 @@ export default {
     }
   },
   methods: {
-    getMusicURL(musicIndex) {
-      http.get("/song/url", { id: musicIndex }).then(({ data }) => {
-        console.log(data);
-        this.url = data.data[0].url;
-        console.log("拿到的url为", this.url);
-      });
-    }
+    ...mapMutations(['alterPlayState']),
+    ...mapActions(['getMusicURL']),
+    playMusic(){
+      this.alterPlayState();
+      // this.isPlay = true;
+    },
+    // getMusicURL(musicIndex) {
+    //   http.get("/song/url", { id: musicIndex }).then(({ data }) => {
+    //     console.log(data);
+    //     this.url = data.data[0].url;
+    //     console.log("拿到的url为", this.url);
+    //   });
+    // }
   }
 };
 </script>
@@ -87,6 +99,10 @@ export default {
     width: 250px;
     display: flex;
     justify-content: space-around;
+  }
+  .middle{
+    display: flex;
+    align-items: center;
   }
 }
 </style>

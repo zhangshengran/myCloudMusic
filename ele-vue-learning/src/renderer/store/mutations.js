@@ -7,6 +7,12 @@ const mutations = {
     },
     setMusicIndex(state,musicIndex){
         state.musicIndex = musicIndex;
+    },
+    alterPlayState(state){
+        state.isPlay = !state.isPlay;
+    },
+    setSongUrl(state,SongUrl){
+        state.songUrl=SongUrl
     }
 }
 
