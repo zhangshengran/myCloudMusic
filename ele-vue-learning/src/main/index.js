@@ -9,9 +9,9 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 
 
 
-if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
-}
+// if (process.env.NODE_ENV !== 'development') {
+//   global.__static = require('path').join(__dirname, '/static').replace(////g, '////')
+// }
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -22,9 +22,10 @@ function createWindow () {
   /**
    * Initial window options
    */
-  BrowserWindow.addDevToolsExtension("C:/Users/wo/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
- 
+  // BrowserWindow.addDevToolsExtension("C:/Users/wo/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
+                                                                                                      // nhdogjmejiglipccpnnnanhbledajbpd
 
+  BrowserWindow.addDevToolsExtension("C:/Users/xunbao/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
 
   mainWindow = new BrowserWindow({
     height: 670,

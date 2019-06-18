@@ -2,13 +2,13 @@
   <div class="play">
     <div class="left">
       <div>
-        <i class="iconfont test iconshangyiqu" style="font-size:20px"></i>
+        <i class="iconfont test iconshangyiqu" style="font-size:20px" @click="this.getPreMusic"></i>
       </div>
       <div>
         <i class="iconfont iconplay1" style="font-size:30px" @click="playMusic"></i>
       </div>
       <div>
-        <i class="iconfont iconxiayiqu" style="font-size:20px"></i>
+        <i class="iconfont iconxiayiqu" style="font-size:20px" @click="this.getNextMusic"></i>
       </div>
     </div>
     <div class="middle">
@@ -21,7 +21,7 @@
       </audio> -->
       <vueAudio 
       :isPlay='this.isPlay'
-      :theUrl='this.songUrl'
+      :theUrl='this.songUrl '
       ></vueAudio>
     </div>
   </div>
@@ -35,27 +35,32 @@ export default {
   components:{vueAudio},
   data() {
     return {
-      url: ""
+      isPlay:false
     };
   },
   computed: {
-    ...mapState(["songList", "musicIndex",'isPlay','songUrl'])
+    ...mapState(["songList", "musicIndex",'songUrl'])
   },
   mounted() {
     console.log("player", this.songList);
   },
   watch: {
+    songUrl(url){
+      this.isPlay = true;
+    },
     musicIndex(musicIndex) {
       console.log("拿到的index为", musicIndex);
       console.log(this.songList[this.musicIndex].id);
-      this.getMusicURL(this.songList[this.musicIndex].id);
+      let musicId = this.songList[this.musicIndex].id;
+      this.getMusicURL(musicId);
     }
   },
   methods: {
     ...mapMutations(['alterPlayState']),
-    ...mapActions(['getMusicURL']),
+    ...mapActions(['getMusicURL','getNextMusic','getPreMusic']),
     playMusic(){
-      this.alterPlayState();
+       this.isPlay = !this.isPlay;
+      // this.alterPlayState();
       // this.isPlay = true;
     },
     // getMusicURL(musicIndex) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="middle-container">
+  <div class="middle-container custom-scrollbar">
     <div class="middle-header">搜索我，找到1500首单曲</div>
     <div class="table">
       <table border="1">
@@ -52,9 +52,7 @@ export default {
 @import "../assets/common/icon.css";
 
 .middle-container {
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow: scroll;
+ 
   //    background-color: aqua;
   //   min-width: 800px;
 
@@ -76,6 +74,26 @@ export default {
       width: 100%;
     }
   }
+}
+
+
+.custom-scrollbar {
+  height: 70px;
+   width: 100%;
+  height: calc(100vh - 60px);
+  overflow: scroll;
+}
+/* To style the document scrollbar, remove `.custom-scrollbar` */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 </style>
  

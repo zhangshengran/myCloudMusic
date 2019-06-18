@@ -4,7 +4,7 @@
     <audio
       ref="audio"
       class="dn"
-      :src="url"
+      :src="this.theUrl"
       :preload="audio.preload"
       @play="onPlay"
       @error="onError"
@@ -33,7 +33,7 @@
 
       <el-tag type="info">{{ audio.maxTime | formatSecond }}</el-tag>
 
-      <a :href="url" v-show="!controlList.noDownload" target="_blank" class="download" download>下载</a>
+      <a :href="this.theUrl" v-show="!controlList.noDownload" target="_blank" class="download" download>下载</a>
 
       <el-slider
         style="width:50px"
@@ -89,9 +89,7 @@ export default {
   name: "VueAudio",
   data() {
     return {
-      url:
-        this.theUrl ||
-        "http://m10.music.126.net/20190618002542/3691d1261be3549b46fd90e68277178e/ymusic/6946/6458/714f/fd281f506ef177ed2ba00a207a14e2cb.mp3",
+     
       audio: {
         currentTime: 0,
         maxTime: 0,
@@ -121,8 +119,12 @@ export default {
     };
   },
   watch: {
+    theUrl(){
+      // this.startPlay()
+      // console.log( '1111111111',this.$refs.audio.play())
+    },
     isPlay(bool) {
-      console.log(bool);
+      // console.log(bool);
     //   if (bool == 'ture') {
     //     this.startPlay();
     //   } else {
@@ -190,11 +192,11 @@ export default {
     },
     // 当音频开始等待
     onWaiting(res) {
-      console.log(res);
+      // console.log(res);
     },
     // 当音频开始播放
     onPlay(res) {
-      console.log(res);
+      // console.log(res);
       this.audio.playing = true;
       this.audio.loading = false;
       if (!this.controlList.onlyOnePlaying) {
@@ -220,8 +222,8 @@ export default {
     // 当加载语音流元数据完成后，会触发该事件的回调函数
     // 语音元数据主要是语音的长度之类的数据
     onLoadedmetadata(res) {
-      console.log("loadedmetadata");
-      console.log(res);
+      // console.log("loadedmetadata");
+      // console.log(res);
       this.audio.waiting = false;
       this.audio.maxTime = parseInt(res.target.duration);
     }
