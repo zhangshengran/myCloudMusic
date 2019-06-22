@@ -2,12 +2,9 @@
   <div id="app">
     <Header></Header>
     <div class="middle">
-        <recommend class="recommend"></recommend>
+        <leftBar class="leftBar"></leftBar>
           <!-- <searchMain class="searchMain"></searchMain> -->
-      <router-view>
-      
-      
-      </router-view>
+      <router-view> </router-view>
     </div>
     <player></player>
   </div>
@@ -15,13 +12,13 @@
 
 <script>
 import Header from "./components/header/header";
-import recommend from "./components/recommend/recommend";
+import leftBar from "./components/leftBar";
 import searchMain from "./components/searchMain";
 import player from "./components/player";
 
 export default {
   name: "ele-vue-learning",
-  components: { Header, recommend, searchMain, player }
+  components: { Header, leftBar, searchMain, player }
 };
 </script>
 

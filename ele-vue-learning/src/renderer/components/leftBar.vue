@@ -53,8 +53,8 @@ export default {
 };
 </script>
 <style <style lang='scss'>
-@import "../../assets/common/common.scss";
-@import "../../assets/common/icon.css";
+@import "../assets/common/common.scss";
+@import "../assets/common/icon.css";
 
 .recommend {
   min-width: 250px;
@@ -70,7 +70,7 @@ export default {
     
   }
   .line:hover {
-    background-color: #7d7d7d;
+    background-color: $gray;
     cursor: pointer;
   }
   .line-flex {

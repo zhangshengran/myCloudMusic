@@ -7,7 +7,8 @@ const state = {
     songList:[],//搜索出來的列表
     musicIndex:'',//播放的是列表的第几個
     isPlay:false,
-    songUrl:'http://m10.music.126.net/20190618002542/3691d1261be3549b46fd90e68277178e/ymusic/6946/6458/714f/fd281f506ef177ed2ba00a207a14e2cb.mp3',
+    songUrl:'',
+    // songUrl:"http://m10.music.126.net/20190622170629/f2d93a6628505ac733c64d50abc48ccc/ymusic/5259/0f58/025a/e3180777498250ab35e8508f7963a893.mp3",
     // userInfo:{
     //     userName:'',
     //     userId:'',

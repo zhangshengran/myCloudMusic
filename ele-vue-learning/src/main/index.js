@@ -22,10 +22,10 @@ function createWindow () {
   /**
    * Initial window options
    */
-  // BrowserWindow.addDevToolsExtension("C:/Users/wo/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
+  BrowserWindow.addDevToolsExtension("C:/Users/wo/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
                                                                                                       // nhdogjmejiglipccpnnnanhbledajbpd
 
-  BrowserWindow.addDevToolsExtension("C:/Users/xunbao/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
+  // BrowserWindow.addDevToolsExtension("C:/Users/xunbao/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.0_0");
 
   mainWindow = new BrowserWindow({
     height: 670,

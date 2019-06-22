@@ -1,6 +1,6 @@
 <template>
   <div class="middle-container custom-scrollbar">
-    <div class="middle-header">搜索我，找到1500首单曲</div>
+    <div class="middle-header">找到{{this.songList.length}}首单曲</div>
     <div class="table">
       <table border="1">
         <tr>
@@ -10,20 +10,24 @@
           <th style="min-width:120px">歌手</th>
           <th style="min-width:150px">专辑</th>
           <th style="min-width:65px">时长</th>
-          <th>热度</th>
+          <!-- <th>热度</th> -->
         </tr>
-        <tr v-for="(item, index) in songList" :key="index" @click="chooseMusic(index)">
+        <tr v-for="(item, index) in songList" :key="index" class="songlist" ref="songlist">
           <td>{{index}}</td>
           <td class="heartDown">
             <i class="iconfont iconxin"></i>
             <i class="iconfont iconxiazai"></i>
           </td>
-          <td >{{item.name}}</td>
+          <td
+            style="color:#0c73c2"
+            :index="index"
+            @dblclick="chooseMusic($event,index)"
+          >{{item.name}}</td>
           <td>{{item.artists[0].name}}</td>
           <td>{{item.album.name}}</td>
           <td>{{item.duration}}</td>
           <td>
-            {{item.fee}}
+            <!-- {{item.fee}} -->
             <!-- <el-progress :percentage="50" color="gray"></el-progress><-->
           </td>
         </tr>
@@ -34,12 +38,23 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
+
 export default {
+  data() {
+    return {
+      isActive: true
+    };
+  },
   methods: {
-    ...mapMutations(['setMusicIndex']),
-    chooseMusic(musicIndex){
-      console.log(musicIndex)
-        this.setMusicIndex(musicIndex)
+    ...mapMutations(["setMusicIndex"]),
+    chooseMusic(e, musicIndex) {
+      var songList = this.$refs.songlist;
+      songList.forEach((value)=>{
+       value.style.background=''
+      })
+    e.currentTarget.parentElement.style.background='#e6e7ea'
+
+      this.setMusicIndex(musicIndex);
     }
   },
   computed: {
@@ -52,7 +67,15 @@ export default {
 @import "../assets/common/icon.css";
 
 .middle-container {
- 
+  .active {
+    background: $gray;
+  }
+  .iconxiazai {
+    font-size: 14px;
+  }
+  .iconxiazai:hover {
+    color: $red;
+  }
   //    background-color: aqua;
   //   min-width: 800px;
 
@@ -76,10 +99,9 @@ export default {
   }
 }
 
-
 .custom-scrollbar {
   height: 70px;
-   width: 100%;
+  width: 100%;
   height: calc(100vh - 60px);
   overflow: scroll;
 }
@@ -94,6 +116,11 @@ export default {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.songlist:hover {
+  background: $gray;
+  cursor: pointer;
 }
 </style>
  

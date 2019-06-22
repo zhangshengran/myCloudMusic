@@ -2,7 +2,7 @@ import axios from 'axios'
 
 var instance = axios.create({
     baseURL: 'http://www.zhuoran.fun:3000',
-    timeout: 2000,
+    timeout: 9000,
     // headers: {'X-Custom-Header': 'foobar'}
   });
   

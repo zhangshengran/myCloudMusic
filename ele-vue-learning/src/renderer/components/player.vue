@@ -12,27 +12,21 @@
       </div>
     </div>
     <div class="middle">
-      <!-- <audio controls>
-        <source :src="this.url" type="audio/mpeg">
-        <source
-          src="http://m10.music.126.net/20190617000748/41365e6c66a6db1e1931df6c6411fa88/ymusic/035e/030e/075b/44dac57aa74d83feae0201e1b7b7243e.mp3"
-          type="audio/mpeg"
-        >
-      </audio> -->
-      <vueAudio 
+      <myAudio 
+      :songUrl='this.songUrl'
       :isPlay='this.isPlay'
-      :theUrl='this.songUrl '
-      ></vueAudio>
+       ></myAudio>
+   
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
-import vueAudio from './vueAudio'
+import myAudio from './myAudio'
 import http from "../api";
 export default {
-  components:{vueAudio},
+  components:{myAudio},
   data() {
     return {
       isPlay:false
@@ -46,7 +40,7 @@ export default {
   },
   watch: {
     songUrl(url){
-      this.isPlay = true;
+      this.isPlay = true;//url一更新，则自动设置播放
     },
     musicIndex(musicIndex) {
       console.log("拿到的index为", musicIndex);

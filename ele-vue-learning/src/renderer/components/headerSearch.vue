@@ -1,13 +1,13 @@
 <template>
   <div class="modal">
     <i class="iconfont iconshangjiantou" style="position:absolute;top:-15px;left:30px;color:white"></i>
-    <i class="iconfont "></i>
+    <i class="iconfont"></i>
     <div class="modal-left">
       <header>
         <i class="iconfont iconfenxiang"></i>
         <div>热门搜索</div>
       </header>
-        <div v-if="searchSong">
+      <div v-if="searchSong">
         <div v-for="(item,index) in  songList.albums" :key="index" class="ltem">
           <div @mousedown="emitSong(item.name)" v-if="item.name">{{item.name}}</div>
         </div>
@@ -32,47 +32,49 @@
 import { constants } from "fs";
 import { connect } from "tls";
 import debounce from "../utils/utils";
-import http from '../api'
+import http from "../api";
 export default {
-  props: ['searchSong'],
-    mounted() {
-       http.get("/search/hot").then(({ data }) => {
-                this.hotList = data.result.hots;
-              console.log(this.hotList)
-
-            });
-    },
+  props: ["searchSong"],
+  mounted() {
+    http.get("/search/hot").then(({ data }) => {
+      this.hotList = data.result.hots;
+      console.log(this.hotList);
+    });
+  },
   data() {
     return {
-      songList:{},
+      songList: {},
       hotList: [],
-      ownSearchName:''
+      ownSearchName: ""
     };
   },
   watch: {
-      searchSong(val){//searchSong为父组件发来的props
-      
-         debounce(()=>{this.ownSearchName=val; 
-          http.get("/search/suggest", { keywords: val }).then(({ data }) => {
-                    this.songList = data.result;
-                });
-          console.log(this.ownSearchName)}, 300)(val)
-      },
-        
-    
-  },methods: {
-    emitSong(songName){
-      console.log('子组件发送')
-    
-      this.$emit('chooseMusic',songName)
+    searchSong(val) {
+      //searchSong为父组件发来的props
+      //搜索建议还没有加入MV和其他的数据，目前只显示从此接口拿到的音乐单曲建议
+      debounce(() => {
+        this.ownSearchName = val;
+        http.get("/search/suggest", { keywords: val }).then(({ data }) => {
+          this.songList = data.result;
+        });
+        console.log(this.ownSearchName);
+      }, 300)(val);
     }
   },
+  methods: {
+    emitSong(songName) {
+      console.log("子组件发送");
+
+      this.$emit("chooseMusic", songName);
+    }
+  }
 };
 </script> 
 <style <style lang='scss'>
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 .modal {
+  box-shadow: 2px 2px 5px #333333;
   position: absolute;
   top: 34px;
   left: 60px;
@@ -87,7 +89,6 @@ export default {
       display: flex;
       align-items: center;
       line-height: 26px;
-    
     }
   }
   .modal-right {
