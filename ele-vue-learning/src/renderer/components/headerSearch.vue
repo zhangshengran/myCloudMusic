@@ -3,7 +3,7 @@
     <i class="iconfont iconshangjiantou" style="position:absolute;top:-15px;left:30px;color:white"></i>
     <i class="iconfont"></i>
     <div class="modal-left">
-      <header>
+      <header style="border-bottom:1px solid #e6e7ea">
         <i class="iconfont iconfenxiang"></i>
         <div>热门搜索</div>
       </header>
@@ -19,11 +19,16 @@
       </div>
     </div>
 
-    <div class="modal-right">
-      <header>
+    <div class="modal-right" v-if="searchHistory.length">
+      <header style="border-bottom:1px solid #e6e7ea">
         <i class="iconfont icondaojishi"></i>
         <div>搜索历史</div>
       </header>
+
+      <div class="searchHisIndex" v-for="(item, index) in searchHistory" :key="index">
+        <div @mousedown="emitSong(item)">{{item}}</div>
+        <i class="iconfont iconguanbi" @mousedown="removeSearchItem(index)"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +38,8 @@ import { constants } from "fs";
 import { connect } from "tls";
 import debounce from "../utils/utils";
 import http from "../api";
+import { mapState, mapMutations, mapActions } from "vuex";
+
 export default {
   props: ["searchSong"],
   mounted() {
@@ -48,6 +55,9 @@ export default {
       ownSearchName: ""
     };
   },
+  computed: {
+    ...mapState(["searchHistory"])
+  },
   watch: {
     searchSong(val) {
       //searchSong为父组件发来的props
@@ -62,6 +72,10 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["removeSearchHistory"]),
+    removeSearchItem(index){
+     this.removeSearchHistory(index)
+    },
     emitSong(songName) {
       console.log("子组件发送");
 
@@ -74,17 +88,19 @@ export default {
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 .modal {
-  box-shadow: 2px 2px 5px #333333;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px $gray;
   position: absolute;
   top: 34px;
   left: 60px;
-  width: 440px;
-  height: 300px;
+  // width: 440px;
+  // height: 300px;
   overflow: hidden;
   background-color: #fafafa;
   display: flex;
   .modal-left {
-    width: 50%;
+    border-right: 1px solid $gray;
+    width: 220px;
     header {
       display: flex;
       align-items: center;
@@ -92,7 +108,7 @@ export default {
     }
   }
   .modal-right {
-    width: 50%;
+    width: 220px;
     header {
       display: flex;
       line-height: 26px;
@@ -101,15 +117,30 @@ export default {
 }
 .ltem {
   div {
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 12px;
+    line-height: 12px;
     color: black;
     padding: 10px;
     cursor: pointer;
   }
   div:hover {
-    background-color: #929292;
+    background-color: $gray;
   }
+}
+.searchHisIndex {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 12px;
+  color: black;
+  padding: 10px;
+  cursor: pointer;
+  .iconguanbi {
+    font-size: 13px;
+  }
+}
+.searchHisIndex:hover {
+  background-color: $gray;
 }
 </style>
  

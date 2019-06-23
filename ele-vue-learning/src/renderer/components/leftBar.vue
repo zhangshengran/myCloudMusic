@@ -1,7 +1,7 @@
 <template>
   <div class="recommend">
     <div class="reco item">
-      <p>推荐</p>
+      <p style="margin-left:5px">推荐</p>
       <div></div>
       <div class="line">
         <div class="line-flex" @click="goFoundSong">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="myMusic item">
-      <p>我的音乐</p>
+      <p style="margin-left:5px">我的音乐</p>
 
       <div class="line">
         <div class="line-flex">
@@ -30,7 +30,7 @@
       <!-- <div>下载管理</div> -->
     </div>
     <div class="myMusicList item">
-      <p>创建的歌单</p>
+      <p style="margin-left:5px">创建的歌单</p>
       <div class="line-flex">
         <i class="iconfont iconheart"></i>
         <div class="mar-left">我喜欢的音乐</div>

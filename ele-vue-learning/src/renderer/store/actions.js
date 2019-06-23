@@ -1,6 +1,7 @@
 import http from '../api/index'
 var actions = {
   getSongList({ commit, state }, searchSongName) {
+    commit('addSearchHistory', searchSongName);
     http.get('/search', { keywords: searchSongName }).then(({ data }) => {
       // state.songList = data.result.songs;
       commit('setSonglist', data.result.songs);
@@ -8,36 +9,41 @@ var actions = {
       // console.log('设置songList',state.songList)
     })
   },
-  getMusicURL({ commit, state }, musicId) {
-    http.get("/song/url", { id: musicId }).then(({ data }) => {
-      console.log(data);
-      this.url = data.data[0].url;
-      console.log("拿到的url为", this.url);
-      commit('setSongUrl', this.url)
-    });
+  async getMusicURL({ commit, state }, musicId) {
+    let url = await getMusicUrl(musicId);
+    commit('setSongUrl',url)
   },
-  getNextMusic({ commit, state }) {
-    commit('nextMusicIndex','next');
-   
+  async getNextMusic({ commit, state }) {
+    commit('nextMusicIndex', 'next');
+
     let musicId = state.songList[state.musicIndex].id
-    http.get("/song/url", { id: musicId }).then(({ data }) => {
-      console.log('iddddddddddd',state.musicIndex);
-      this.url = data.data[0].url;
-      console.log("拿到的url为", this.url);
-      commit('setSongUrl', this.url)
-    });
+    let url = await getMusicUrl(musicId);
+
+    commit('setSongUrl',url)
   },
 
-  getPreMusic({ commit, state }){
-    commit('nextMusicIndex','pre');
-    let musicId = state.songList[state.musicIndex].id
-    http.get("/song/url", { id: musicId }).then(({ data }) => {
-      console.log('iddddddddddd',state.musicIndex);
-      this.url = data.data[0].url;
-      console.log("拿到的url为", this.url);
-      commit('setSongUrl', this.url)
-    });
+ async getPreMusic({ commit, state }) {
+    commit('nextMusicIndex', 'pre');
+    let musicId = state.songList[state.musicIndex].id;
+    let url = await getMusicUrl(musicId);
+
+    commit('setSongUrl', url)
   }
 }
 
+
+function getMusicUrl(musicId) {
+  return http.get("/song/url", { id: musicId }).then(({ data }) => {
+   
+    let url = data.data[0].url;
+    if(!url){
+      alert('暂无版权')
+    }else{
+      console.log("调用获取歌曲地址接口", url);
+      return url;
+    }
+   
+
+  });
+}
 export default actions;

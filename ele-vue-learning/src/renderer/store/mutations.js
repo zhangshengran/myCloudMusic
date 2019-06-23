@@ -14,17 +14,28 @@ const mutations = {
     setSongUrl(state, SongUrl) {
         state.songUrl = SongUrl
     },
-    nextMusicIndex(state,preNext) {
-        if(preNext =='next'){
+    nextMusicIndex(state, preNext) {
+        if (preNext == 'next') {
             if (state.musicIndex < 29) {
                 state.musicIndex++;
             }
-        }else{
-            if (state.musicIndex >0) {
+        } else {
+            if (state.musicIndex > 0) {
                 state.musicIndex--;
             }
         }
-       
+
+    },
+    addSearchHistory(state, item) {
+        var hasitem = state.searchHistory.includes(item);
+        if (!hasitem) {
+            state.searchHistory.push(item);
+            state.searchHistory.splice(9)
+        }
+
+    },
+    removeSearchHistory(state, index) {
+        state.searchHistory.splice(index, 1)
     }
 }
 

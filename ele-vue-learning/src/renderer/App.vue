@@ -37,4 +37,7 @@ export default {
   //   flex: 1;
   // }
 }
+div{
+   user-select: none;
+}
 </style>

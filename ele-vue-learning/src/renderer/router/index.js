@@ -10,7 +10,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'landing-page',
+      name: 'loading-page',
       redirect: '/foundsong'
      
     },

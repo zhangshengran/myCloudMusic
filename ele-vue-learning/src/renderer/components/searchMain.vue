@@ -48,12 +48,18 @@ export default {
   methods: {
     ...mapMutations(["setMusicIndex"]),
     chooseMusic(e, musicIndex) {
+
+
+      //设置表格选择播放的背景变色
       var songList = this.$refs.songlist;
       songList.forEach((value)=>{
        value.style.background=''
       })
     e.currentTarget.parentElement.style.background='#e6e7ea'
 
+
+
+      //将选择的歌曲的列表下标传入
       this.setMusicIndex(musicIndex);
     }
   },
@@ -110,12 +116,12 @@ export default {
   width: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px #757474;
   border-radius: 10px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 6px #757474;
 }
 
 .songlist:hover {
