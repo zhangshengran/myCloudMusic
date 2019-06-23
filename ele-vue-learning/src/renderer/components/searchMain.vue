@@ -12,7 +12,13 @@
           <th style="min-width:65px">时长</th>
           <!-- <th>热度</th> -->
         </tr>
-        <tr v-for="(item, index) in songList" :key="index" class="songlist" ref="songlist">
+        <tr
+          v-for="(item, index) in songList"
+          :key="index"
+          :index="index"
+          class="songlist"
+          ref="songlist"
+        >
           <td>{{index}}</td>
           <td class="heartDown">
             <i class="iconfont iconxin"></i>
@@ -38,6 +44,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
+import { constants } from "fs";
 
 export default {
   data() {
@@ -46,25 +53,32 @@ export default {
     };
   },
   methods: {
+    setChooseItemStyle() {
+      var songList = this.$refs.songlist;
+      // songList[this.musicIndex];
+      songList.forEach(value => {
+        if (value.getAttribute("index") == this.musicIndex) {
+          value.style.background = "#e6e7ea";
+        } else {
+          value.style.background = "";
+        }
+      });
+    },
     ...mapMutations(["setMusicIndex"]),
-    chooseMusic(e, musicIndex) {
-
+    chooseMusic(e, Index) {
+      this.setMusicIndex(Index);
+      this.setChooseItemStyle();
 
       //设置表格选择播放的背景变色
-      var songList = this.$refs.songlist;
-      songList.forEach((value)=>{
-       value.style.background=''
-      })
-    e.currentTarget.parentElement.style.background='#e6e7ea'
-
-
-
-      //将选择的歌曲的列表下标传入
-      this.setMusicIndex(musicIndex);
+    }
+  },
+  watch: {
+    musicIndex() {
+     this.setChooseItemStyle();
     }
   },
   computed: {
-    ...mapState(["songList"]) //拿到vuex中的搜索结果列表
+    ...mapState(["songList", "musicIndex"]) //拿到vuex中的搜索结果列表
   }
 };
 </script>

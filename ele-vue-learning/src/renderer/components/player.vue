@@ -5,7 +5,7 @@
         <i class="iconfont test iconshangyiqu" style="font-size:20px" @click="this.getPreMusic"></i>
       </div>
       <div>
-        <i class="iconfont iconplay1" style="font-size:30px" @click="playMusic"></i>
+        <i class="iconfont " :class="{iconplay1:!isPlay,iconzanting:isPlay}" style="font-size:30px" @click="playMusic"></i>
       </div>
       <div>
         <i class="iconfont iconxiayiqu" style="font-size:20px" @click="this.getNextMusic"></i>
