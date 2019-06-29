@@ -79,7 +79,7 @@ export default {
 
 .recommend {
   position: relative;
-  min-width: 250px;
+  width: 250px;
   background-color: $back;
   height: calc(100vh - 100px);
   p {
