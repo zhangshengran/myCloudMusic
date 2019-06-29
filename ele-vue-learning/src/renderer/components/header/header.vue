@@ -3,7 +3,7 @@
     <div class="header-left">
       <img src alt class="logo">
 
-      <p class="header-left-p">网易云音乐</p>
+      <p class="header-left-p no-drag" @click="goSelectPage()">网易云音乐</p>
     </div>
 
     <div class="header-middle">
@@ -86,11 +86,16 @@ export default {
   },
   watch: {},
   methods: {
+    goSelectPage(){
+      this.$router.push('/selectPage')
+            // this.$router.push('/playPage')
+
+    },
     ...mapActions(["getSongList"]),
     // ...mapMutations(['setChooseSong']),
     searchClick() {
       this.getSongList(this.input);
-      this.$router.push("./searchmain");
+      this.$router.push("/selectPage/searchmain");
       this.isShowModel = false;
     },
     test(e) {},
@@ -99,7 +104,7 @@ export default {
       this.input = e;
       this.isShowModel = false;
       this.getSongList(this.input);
-      this.$router.push("./searchmain");
+      this.$router.push("/selectPage/searchmain");
     },
     getHot() {
       http.get("/search/hot").then(({ data }) => {
@@ -129,8 +134,11 @@ export default {
 }
 
 .header {
+
+  width: 100%;
   color: #eec1c1;
-  position: relative;
+  position: fixed;
+  top: 0;
   height: 50px;
   background-color: $red;
   display: flex;
@@ -230,7 +238,11 @@ export default {
       color: white;
     }
   }
+  .header-left-p{
+    cursor: pointer;
+  }
 }
+
 </style>
  
 

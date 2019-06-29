@@ -14,6 +14,12 @@ const mutations = {
     setSongUrl(state,SongUrl) {
         state.songUrl = SongUrl;
     },
+    getLyc(state,Lyc){
+        state.songLyr = Lyc
+    },
+    getCommit(state,songCommit){
+        state.songCommit=songCommit;
+    },
     nextMusicIndex(state, preNext) {
         if (preNext == 'next') {
             if (state.musicIndex < 29) {

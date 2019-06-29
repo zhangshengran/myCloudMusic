@@ -10,6 +10,7 @@ const state = {
     songUrl:'',//歌曲url
     songLyr:'',//歌词
     searchHistory:[],
+    songCommit:'',
     // songId:'',//通过list和index确定，不用单独设置
     // songName:'',
     // artistsName:'',

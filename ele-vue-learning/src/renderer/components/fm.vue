@@ -11,9 +11,9 @@ export default {};
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 
-.fm {
-  width: 100%;
-}
+// .fm {
+//   width: 100%;
+// }
 </style>
  
 

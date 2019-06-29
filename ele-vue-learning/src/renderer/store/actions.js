@@ -1,4 +1,6 @@
 import http from '../api/index'
+import {getMusicUrl,getLyr} from '../api/api'
+
 var actions = {
   getSongList({ commit, state }, searchSongName) {
     commit('addSearchHistory', searchSongName);
@@ -25,27 +27,16 @@ var actions = {
     commit('nextMusicIndex', 'pre');
     let url = await getMusicUrl(musicId);
     commit('setSongUrl',url)
+  },
+  async getLyc({ commit, state }){
+    let Lyc = await getLyr(musicId);
+    console.log(Lyc)
+    commit('getLyc',Lyc);
   }
 }
-// function getSongDetail({ commit, state },musicId){
-//   return  http.get("/song/detail", { ids: musicId }).then(({data})=>{
-//     let songName = data.songs[0].name;
-//     let songImg = data.songs[0].al.picUrl;
-//     commit('setSong',{musicId,songName,songImg})
-//   })
-// }
 
-function getMusicUrl(musicId) {
-  return http.get("/song/url", { id: musicId }).then(({ data }) => {
-    let url = data.data[0].url;
-    if(!url){
-      alert('暂无版权')
-    }else{
-      console.log("调用获取歌曲地址接口", url);
-      return url;
-    }
-   
 
-  });
-}
+
+
+
 export default actions;

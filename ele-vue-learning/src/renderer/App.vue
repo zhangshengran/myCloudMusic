@@ -1,24 +1,21 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div class="middle">
-        <leftBar class="leftBar"></leftBar>
-          <!-- <searchMain class="searchMain"></searchMain> -->
-      <router-view> </router-view>
-    </div>
+      <router-view  style="margin-top: 50px;"></router-view>
     <player></player>
   </div>
 </template>
 
 <script>
 import Header from "./components/header/header";
-import leftBar from "./components/leftBar";
-import searchMain from "./components/searchMain";
+// import leftBar from "./components/leftBar";
+// import searchMain from "./components/searchMain";
 import player from "./components/player";
-
+import playPage from "./pages/playPage";
+import selectPage from "./pages/selectPage";
 export default {
   name: "ele-vue-learning",
-  components: { Header, leftBar, searchMain, player }
+  components: { Header, playPage, selectPage, player }
 };
 </script>
 
@@ -26,18 +23,12 @@ export default {
 // @import "../assets/common/common.scss";
 // @import "../assets/common/icon.css";
 #app {
-  min-width: 1080px;
-  min-height: 670px;
-  overflow: hidden;
+  // width: 1080px;
+  // height: 670px;
+  // overflow: hidden;
 }
-.middle {
-  display: flex;
 
-  // .searchMain {
-  //   flex: 1;
-  // }
-}
-div{
-   user-select: none;
+div {
+  user-select: none;
 }
 </style>

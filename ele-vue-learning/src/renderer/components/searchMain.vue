@@ -87,6 +87,7 @@ export default {
 @import "../assets/common/icon.css";
 
 .middle-container {
+      // min-width: 830px;
   .active {
     background: $gray;
   }

@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="detailMusic" v-if="this.SongDetail">
+    <div class="detailMusic" v-if="this.SongDetail" @click="goPlayPage">
       <div class="left">
         <!-- <i class="iconfont iconwebicon311"></i> -->
 
@@ -63,12 +63,17 @@ export default {
     ...mapGetters(["SongDetail"])
   },
   methods: {
+    goPlayPage(){
+           this.$router.push('/playPage')
+
+
+    },
     goFM() {
       console.log("fm");
-      this.$router.push("/fm");
+      this.$router.push("/selectPage/fm");
     },
     goFoundSong() {
-      this.$router.push("/foundsong");
+      this.$router.push("/selectPage/foundsong");
     }
   }
 };
@@ -79,7 +84,8 @@ export default {
 
 .recommend {
   position: relative;
-  width: 250px;
+ 
+  min-width: 250px;
   background-color: $back;
   height: calc(100vh - 100px);
   p {

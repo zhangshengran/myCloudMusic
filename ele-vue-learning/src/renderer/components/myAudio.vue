@@ -9,9 +9,9 @@
 export default {
     props:['songUrl','isPlay'],
     mounted() {
-        setInterval(()=>{
-          console.log( this.$refs.audio.currentTime) 
-        },1000)
+        // setInterval(()=>{
+        //   console.log( this.$refs.audio.currentTime) 
+        // },1000)
     },
     watch: {
         songUrl(val){
