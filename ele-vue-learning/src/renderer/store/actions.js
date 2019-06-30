@@ -6,7 +6,6 @@ var actions = {
     commit('addSearchHistory', searchSongName);
     localStorage.setItem(searchSongName, searchSongName);
 
-    
     http.get('/search', { keywords: searchSongName }).then(({ data }) => {
       // state.songList = data.result.songs;
       commit('setSonglist', data.result.songs);

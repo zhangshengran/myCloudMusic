@@ -1,9 +1,7 @@
 <template>
 
-<div class="lyc">
-   <div>
-
-   </div>
+<div>
+  
 </div>
 </template>
 
@@ -15,9 +13,7 @@ export default {};
 <style lang='scss' scoped>
    @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
-.lyc{
 
-}
   
 </style>
  

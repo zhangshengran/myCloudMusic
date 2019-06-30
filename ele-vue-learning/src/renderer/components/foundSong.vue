@@ -1,9 +1,15 @@
 <template>
-  <div class="foundsong">foundsong</div>
+  <!-- <div class="foundsong">foundsong</div> -->
+  <div>
+    <comment></comment>
+  </div>
 </template>
 
 <script>
-export default {};
+import comment from './comment'
+export default {
+  components:{comment}
+};
 </script>
 <style <style lang='scss'>
 @import "../assets/common/common.scss";
@@ -12,6 +18,7 @@ export default {};
 //   .foundsong{
 
 //   }
+
 </style>
  
 
