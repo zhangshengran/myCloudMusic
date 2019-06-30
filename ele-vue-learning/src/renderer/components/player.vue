@@ -5,7 +5,7 @@
         <i class="iconfont test iconshangyiqu" style="font-size:20px" @click="this.getPreMusic"></i>
       </div>
       <div>
-        <i class="iconfont " :class="{iconplay1:!isPlay,iconzanting:isPlay}" style="font-size:30px" @click="playMusic"></i>
+        <i class="iconfont " :class="{iconplay1:this.isPlay,iconzanting:!this.isPlay}" style="font-size:30px" @click="playMusic"></i>
       </div>
       <div>
         <i class="iconfont iconxiayiqu" style="font-size:20px" @click="this.getNextMusic"></i>
@@ -22,18 +22,20 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 import myAudio from './myAudio'
 import http from "../api";
 export default {
   components:{myAudio},
   data() {
     return {
-      isPlay:false
+      // isPlay:false
     };
+  },methods: {
+ 
   },
   computed: {
-    ...mapState(["songList", "musicIndex",'songUrl'])
+    ...mapState(["songList", "musicIndex",'songUrl','isPlay'])
   },
   mounted() {
     console.log("player", this.songList);
@@ -50,12 +52,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['alterPlayState']),
+    ...mapMutations(['toggleIsPlay']),
     ...mapActions(['getMusicURL','getNextMusic','getPreMusic']),
     playMusic(){
-       this.isPlay = !this.isPlay;
-      // this.alterPlayState();
-      // this.isPlay = true;
+      //  this.isPlay = !this.isPlay;
+       this.toggleIsPlay();
+     
     },
     // getMusicURL(musicIndex) {
     //   http.get("/song/url", { id: musicIndex }).then(({ data }) => {

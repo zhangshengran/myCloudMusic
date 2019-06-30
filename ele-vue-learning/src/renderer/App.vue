@@ -26,6 +26,7 @@ export default {
   // width: 1080px;
   // height: 670px;
   // overflow: hidden;
+
 }
 
 div {

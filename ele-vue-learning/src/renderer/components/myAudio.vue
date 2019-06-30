@@ -6,13 +6,20 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+
 export default {
     props:['songUrl','isPlay'],
     mounted() {
-        // setInterval(()=>{
+        setInterval(()=>{
         //   console.log( this.$refs.audio.currentTime) 
-        // },1000)
+          var currentTime = this.$refs.audio.currentTime;
+          this.setPlayTime(currentTime)
+        },500)
+    },methods: {
+           ...mapMutations(['setPlayTime'])
     },
+    // playTime
     watch: {
         songUrl(val){
             // this.$refs.audio.play();

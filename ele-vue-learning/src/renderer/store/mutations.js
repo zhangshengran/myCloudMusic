@@ -1,4 +1,5 @@
 const mutations = {
+    toggleIsPlay(state) { state.isPlay =!state.isPlay },
     setChooseSong(state, chooseSong) {
         state.chooseSong = chooseSong;
     },
@@ -8,17 +9,15 @@ const mutations = {
     setMusicIndex(state, musicIndex) {
         state.musicIndex = musicIndex;
     },
-    alterPlayState(state) {
-        state.isPlay = !state.isPlay;
-    },
-    setSongUrl(state,SongUrl) {
+
+    setSongUrl(state, SongUrl) {
         state.songUrl = SongUrl;
     },
-    getLyc(state,Lyc){
+    getLyc(state, Lyc) {
         state.songLyr = Lyc
     },
-    getCommit(state,songCommit){
-        state.songCommit=songCommit;
+    getCommit(state, songCommit) {
+        state.songCommit = songCommit;
     },
     nextMusicIndex(state, preNext) {
         if (preNext == 'next') {
@@ -42,6 +41,9 @@ const mutations = {
     },
     removeSearchHistory(state, index) {
         state.searchHistory.splice(index, 1)
+    },
+    setPlayTime(state, playTime) {
+        state.playTime = playTime;
     }
 }
 

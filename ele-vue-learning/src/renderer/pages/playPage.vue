@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <lyc :musicId="musicId"></lyc>
+    <lyc></lyc>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ import lyc from '../components/musicLyc'
 export default {
   components:{lyc},
   computed: {
-    ...mapGetters(['musicId'])
+    ...mapGetters(['musicId']),
+    ...mapState(['playTime'])
   },
 
 };

@@ -11,6 +11,7 @@ const state = {
     songLyr:'',//歌词
     searchHistory:[],
     songCommit:'',
+    playTime:Number,
     // songId:'',//通过list和index确定，不用单独设置
     // songName:'',
     // artistsName:'',

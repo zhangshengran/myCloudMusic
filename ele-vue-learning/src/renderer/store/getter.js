@@ -4,6 +4,9 @@ export default {
         return state.songList[state.musicIndex];
     },
     musicId(state){
-        return state.songList[state.musicIndex].id;
+        if(state.musicIndex){
+            return state.songList[state.musicIndex].id;
+        }
+       
     }
 };

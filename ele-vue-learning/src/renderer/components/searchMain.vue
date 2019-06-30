@@ -74,7 +74,7 @@ export default {
   },
   watch: {
     musicIndex() {
-     this.setChooseItemStyle();
+      this.setChooseItemStyle();
     }
   },
   computed: {
@@ -87,7 +87,9 @@ export default {
 @import "../assets/common/icon.css";
 
 .middle-container {
-      // min-width: 830px;
+  // min-width: 830px;
+  // font-family: 仿宋;
+  // font-size: 1.2em;
   .active {
     background: $gray;
   }
