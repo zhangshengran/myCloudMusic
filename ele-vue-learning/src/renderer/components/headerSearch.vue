@@ -19,13 +19,13 @@
       </div>
     </div>
 
-    <div class="modal-right" v-if="searchHistory.length">
+    <div class="modal-right" v-if="this.searchHistory.length">
       <header style="border-bottom:1px solid #e6e7ea">
         <i class="iconfont icondaojishi"></i>
         <div>搜索历史</div>
       </header>
 
-      <div class="searchHisIndex" v-for="(item, index) in searchHistory" :key="index">
+      <div class="searchHisIndex" v-for="(item, index) in this.searchHistory" :key="index">
         <div @mousedown="emitSong(item)">{{item}}</div>
         <i class="iconfont iconguanbi" @mousedown="removeSearchItem(index)"></i>
       </div>
@@ -73,8 +73,9 @@ export default {
   },
   methods: {
     ...mapMutations(["removeSearchHistory"]),
-    removeSearchItem(index){
-     this.removeSearchHistory(index)
+    removeSearchItem(index) {
+      localStorage.removeItem(Object.keys(localStorage)[index]);
+      this.removeSearchHistory(index);
     },
     emitSong(songName) {
       console.log("子组件发送");
@@ -137,6 +138,9 @@ export default {
   cursor: pointer;
   .iconguanbi {
     font-size: 13px;
+  }
+  .iconguanbi:hover{
+    color: $red;
   }
 }
 .searchHisIndex:hover {

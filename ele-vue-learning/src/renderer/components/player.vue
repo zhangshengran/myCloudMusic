@@ -41,9 +41,6 @@ export default {
     console.log("player", this.songList);
   },
   watch: {
-    songUrl(url){
-      this.isPlay = true;//url一更新，则自动设置播放
-    },
     musicIndex(musicIndex) {
       console.log("拿到的index为", musicIndex);
       console.log(this.songList[this.musicIndex].id);

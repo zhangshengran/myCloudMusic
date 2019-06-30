@@ -8,10 +8,8 @@ const state = {
     musicIndex:'',//播放的是列表的第几个,通过songList和musicIndex就能确定当前播放的所有信息
     isPlay:false,//是否播放
     songUrl:'',//歌曲url
-    songLyr:'',//歌词
     searchHistory:[],
     songCommit:'',
-    playTime:Number,
     // songId:'',//通过list和index确定，不用单独设置
     // songName:'',
     // artistsName:'',

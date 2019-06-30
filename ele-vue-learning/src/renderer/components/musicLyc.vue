@@ -14,7 +14,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-
+import Vue from 'vue'
 import { lycAnalysis } from "../utils/utils";
 import { getLyr } from "../api/api";
 export default {
@@ -27,8 +27,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["musicId"]),
-    ...mapState(["playTime"])
+    ...mapGetters(["musicId"])
   },
   mounted() {
     getLyr(this.musicId).then(({ data }) => {
@@ -46,8 +45,10 @@ export default {
       var lycDivList = that.$refs.lyc;
 
       setInterval(() => {
+
+       
         var lycDivList = that.$refs.lyc;
-        if (this.playTime - this.timeArr[hand] >= 0) {
+        if (Vue.currentPlayTime - this.timeArr[hand] >= 0) {
           // console.log(this.lycArr[hand]);
 
           if (hand > 0) {

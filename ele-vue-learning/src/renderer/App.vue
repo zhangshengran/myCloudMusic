@@ -22,12 +22,12 @@ export default {
  <style lang='scss'>
 // @import "../assets/common/common.scss";
 // @import "../assets/common/icon.css";
-#app {
-  // width: 1080px;
-  // height: 670px;
-  // overflow: hidden;
+// #app {
+//   // width: 1080px;
+//   // height: 670px;
+//   // overflow: hidden;
 
-}
+// }
 
 div {
   user-select: none;

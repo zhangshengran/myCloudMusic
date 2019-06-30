@@ -7,17 +7,17 @@
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-
+import Vue from 'vue'
 export default {
     props:['songUrl','isPlay'],
     mounted() {
         setInterval(()=>{
         //   console.log( this.$refs.audio.currentTime) 
           var currentTime = this.$refs.audio.currentTime;
-          this.setPlayTime(currentTime)
+          Vue.currentPlayTime = currentTime;
         },500)
     },methods: {
-           ...mapMutations(['setPlayTime'])
+         
     },
     // playTime
     watch: {

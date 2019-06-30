@@ -42,9 +42,7 @@ const mutations = {
     removeSearchHistory(state, index) {
         state.searchHistory.splice(index, 1)
     },
-    setPlayTime(state, playTime) {
-        state.playTime = playTime;
-    }
+   
 }
 
 export default mutations;
