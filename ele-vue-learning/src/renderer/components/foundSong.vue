@@ -1,14 +1,14 @@
 <template>
   <!-- <div class="foundsong">foundsong</div> -->
   <div>
-    <comment></comment>
+    <!-- <comment></comment> -->
   </div>
 </template>
 
 <script>
 import comment from './comment'
 export default {
-  components:{comment}
+  // components:{comment}
 };
 </script>
 <style <style lang='scss'>

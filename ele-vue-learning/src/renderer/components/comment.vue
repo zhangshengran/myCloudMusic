@@ -4,7 +4,7 @@
     <section>
       <div style="padding:5px 0">精彩评论</div>
       <hr  style="color:#f0f0f0"/>
-      <div class="containerItem" v-for="(item, index) in hotComments" :key="index" style="    margin: 20px 0;">
+      <div class="containerItem" v-for="(item, index) in hotComments" :key="index" style="margin: 20px 0;">
         <div class="commentItem">
           <div class="left">
             <img :src="item.user.avatarUrl" alt />
@@ -46,11 +46,17 @@ export default {
     };
   },
   mounted() {
-    commentMusic(186016).then(({ data }) => {
+    commentMusic(this.musicId).then(({ data }) => {
       console.log(data.hotComments);
       this.hotComments = data.hotComments;
     });
-  }
+  },
+//  updated() {
+//     commentMusic(this.musicId).then(({ data }) => {
+//       console.log(data.hotComments);
+//       this.hotComments = data.hotComments;
+//     });
+//  },
 };
 </script>
 <style lang='scss' scoped>

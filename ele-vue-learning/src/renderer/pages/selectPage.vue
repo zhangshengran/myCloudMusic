@@ -1,7 +1,7 @@
 <template>
 <div class="middle">
 <leftBar></leftBar>
-<router-view></router-view>
+<router-view style="margin-left:250px"></router-view>
 </div></template>
 <script>
 import leftBar from "../components/leftBar";

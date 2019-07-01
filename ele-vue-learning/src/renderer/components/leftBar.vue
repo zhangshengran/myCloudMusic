@@ -83,7 +83,8 @@ export default {
 @import "../assets/common/icon.css";
 
 .recommend {
-  position: relative;
+  position: absolute;
+  // top: 0;
  
   min-width: 250px;
   background-color: $back;

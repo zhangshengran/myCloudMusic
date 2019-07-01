@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header></Header>
-      <router-view  style="margin-top: 50px;"></router-view>
+    <!-- class="custom-scrollbar " -->
+      <router-view  style="margin:50px 0; height: calc(100vh - 100px);" class="custom-scrollbar" ></router-view>
     <player></player>
   </div>
 </template>
@@ -20,8 +21,8 @@ export default {
 </script>
 
  <style lang='scss'>
-// @import "../assets/common/common.scss";
-// @import "../assets/common/icon.css";
+@import "./assets/common/common.scss";
+@import "./assets/common/icon.css";
 // #app {
 //   // width: 1080px;
 //   // height: 670px;
