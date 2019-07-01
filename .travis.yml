@@ -3,9 +3,9 @@ node_js:
   - "10"
 
 after_script:
-  # - npm i
+  - npm i
   - npm run build
-  - cd ./dist
+  - cd ./build
   - git init
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_EMAIL}"
