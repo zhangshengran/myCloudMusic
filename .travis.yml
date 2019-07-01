@@ -5,8 +5,8 @@ node_js:
 after_script:
   - npm i
   - npm run build
-  - cd ./build
-  - git init
+  # - cd ./build
+  # - git init
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_EMAIL}"
   - git add .
