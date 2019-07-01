@@ -89,7 +89,6 @@ export default {
   font-size: 1.2em;
   width: 500px;
   height: 450px;
-  overflow-y:scroll;
   .lycitem {
     padding: 10px;
   }
