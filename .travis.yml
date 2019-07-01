@@ -5,7 +5,7 @@ node_js:
 after_script:
   - npm i
   - npm install electron-packager -g
-  - yum install wine
+  - apt-get install wine-stable
   - npm run build
   - cd ./build
   - git init
