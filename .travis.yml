@@ -6,7 +6,7 @@ after_script:
   - npm i
   - npm install electron-packager -g
   - apt-get install wine-stable
-  - npm run build
+  - npm run build:win32
   - cd ./build
   - git init
   - git config user.name "${USER_NAME}"
