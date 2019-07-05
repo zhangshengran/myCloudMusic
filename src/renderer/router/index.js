@@ -5,7 +5,7 @@ import fm from '../components/fm'
 import foundSong from '../components/foundSong'
 import playPage from '../pages/playPage'
 import selectPage from '../pages/selectPage'
-
+import gexingtuijian from '../components/gexingtuijian'
 Vue.use(Router)
 
 export default new Router({
@@ -13,13 +13,14 @@ export default new Router({
     {
       path: '/',
       name: 'selectPage',
-      redirect: '/selectPage'
+      redirect: '/selectPage/foundsong/gexingtuijian'
 
     },
     {
       path: '/selectPage',
       name: 'selectPage',
       component: selectPage,
+      redirect: '/selectPage/foundsong',
       children: [{
         path: '/selectPage/searchmain',
         name: 'searchMain',
@@ -28,7 +29,13 @@ export default new Router({
       {
         path: '/selectPage/foundsong',
         name: 'foundsong',
-        component: foundSong
+        component: foundSong,
+        redirect: '/selectPage/foundsong/gexingtuijian',
+        children: [{
+          path: '/selectPage/foundsong/gexingtuijian',
+          name: 'gexingtuijian',
+          component: gexingtuijian
+        }]
       },
       {
         path: '/selectPage/fm',

@@ -61,4 +61,8 @@ export function banner() {
 }
 
 
+export function personalized() {
+  return http.get('personalized');
+}
+
 

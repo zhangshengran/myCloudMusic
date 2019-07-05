@@ -55,7 +55,9 @@ table { border-collapse: collapse; border-spacing: 0; }
 .ks-clear, .clear {
   *zoom: 1;
 }
-
+div {
+  user-select: none;
+}
 
 .custom-scrollbar {
   overflow-y:scroll;

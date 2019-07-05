@@ -16,26 +16,7 @@
         </div>
       </div>
         <comment></comment>
-      <!-- <div class="comlike">
-        <div class="comment">
-        
-        </div>
 
-        <div class="right">
-          <div class="gedan">
-            <header>
-              获取相似音乐
-              <hr />
-            </header>
-            <div class="gedanitem">
-              <img src="" alt="">
-              <div class="item-right" >
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>

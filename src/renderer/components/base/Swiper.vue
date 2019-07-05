@@ -7,6 +7,8 @@
           v-for="(item, index) in bannerList"
           :key="index"
           :style="{backgroundImage: 'url(' + item + ')'}"
+          style=" background-size:700px;"
+         
         ></div>
       </div>
       <!-- 如果需要分页器 -->
