@@ -64,5 +64,8 @@ export function banner() {
 export function personalized() {
   return http.get('personalized');
 }
+export function playlistDetail(listId){
+  return http.get('playlist/detail',{id:listId});
 
+}
 

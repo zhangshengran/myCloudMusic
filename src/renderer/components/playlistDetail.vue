@@ -1,50 +1,64 @@
 <template>
-  <div class="list">
-    <header>
-      <div class="left">
-        <img
-          style="width:200px"
-          src="http://p1.music.126.net/MyD3C3Mkm07YMjshex6xgA==/109951164165022384.jpg"
-          alt
-        />
-      </div>
-      <div class="right">
-        <div style="font-size: 1.3rem;">怀旧青春之华语乐坛组合&乐队</div>
-        <div class="info">
-          <img
-            style="width: 30px;    border-radius: 50%;"
-            src="http://p1.music.126.net/NMf_ToFuRaCZsdfGAWpfBA==/109951163238739860.jpg"
-            alt
-          />
-          <span style="    font-size: 0.9rem;">昵称</span>
+  <keep-alive>
+    <div class="list">
+      <header v-if="item.coverImgUrl">
+        <div class="left">
+          <img style="width:170px" :src="item.coverImgUrl" alt />
         </div>
-        <div style="    font-size: 0.9rem;margin: 25px 0;">
-          <el-button>播放全部</el-button>
-          <el-button>收藏</el-button>
-          <el-button>分享</el-button>
-          <el-button>下载全部</el-button>
+        <div class="right">
+          <div style="font-size: 1.3rem;">{{listTitle}}</div>
+          <div class="info">
+            <img style="width: 30px;    border-radius: 50%;" :src="item.creator.avatarUrl" alt />
+            <span style="    font-size: 0.9rem;">{{item.creator.nickname}}</span>
+          </div>
+          <div style="    font-size: 0.9rem;margin: 25px 0;">
+            <el-button>播放全部</el-button>
+            <el-button>收藏</el-button>
+            <el-button>分享</el-button>
+            <el-button>下载全部</el-button>
+          </div>
+          <div style="margin-top:8px;">
+            标签：
+            <span style="margin-right: 5px;" v-for="(item, index) in item.tags" :key="index">{{item}}</span>
+          </div>
+          <div style="margin-top:8px;">{{item.description}}</div>
         </div>
-        <div style="margin-top:8px;">标签：华语、流行</div>
-        <div style="margin-top:8px;">
-          简介：有些歌，一响起就是青春。
-          有些人，印刻着青春回忆。
-        </div>
-      </div>
-    </header>
-  </div>
+      </header>
+      <section>
+        <tableList></tableList>
+      </section>
+    </div>
+  </keep-alive>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import tableList from "./base/tableList";
+import { playlistDetail } from "../api/api";
+export default {
+  components: { tableList },
+  data() {
+    return {
+      item: {},
+      listTitle: ""
+    };
+  },
+  mounted() {
+    var listId = this.$route.query.item.id;
+    this.listTitle = this.$route.query.item.name;
 
-export default {};
+    playlistDetail(listId).then(({ data }) => {
+      this.item = data.playlist;
+    });
+  }
+};
 </script>
 <style lang='scss' scoped>
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 .list {
   header {
-    margin-top: 30px;
+    margin: 30px 0;
     display: flex;
     padding: 0 30px;
     .left {

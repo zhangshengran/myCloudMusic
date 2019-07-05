@@ -10,7 +10,12 @@
           <span>更多</span>
         </header>
         <div class="remd">
-          <div class="remditem" v-for="(item, index) in personalized" :key="index">
+          <div
+            class="remditem"
+            v-for="(item, index) in personalized"
+            :key="index"
+            @click="goplayListDetail(item)"
+          >
             <div>
               <img :src="item.picUrl" alt />
             </div>
@@ -24,6 +29,8 @@
 
 <script>
 import { personalized } from "../api/api";
+import { mapState, mapMutations, mapActions } from "vuex";
+
 import swiper from "./base/Swiper";
 export default {
   components: { swiper },
@@ -32,6 +39,13 @@ export default {
       banners: [],
       personalized: []
     };
+  },
+  methods: {
+    ...mapActions(["getplaylistDetail"]),
+    goplayListDetail(item) {
+      this.getplaylistDetail(item.id);
+      this.$router.push({path:'/selectPage/playlistdetail',query: { item: item }})
+    }
   },
   computed: {},
   mounted() {

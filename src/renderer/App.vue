@@ -2,7 +2,9 @@
   <div id="app">
     <Header></Header>
     <!-- class="custom-scrollbar " -->
-      <router-view  style="margin:50px 0; height: calc(100vh - 100px);" class="custom-scrollbar" ></router-view>
+    <!-- <keep-alive> -->
+      <router-view style="margin:50px 0; height: calc(100vh - 100px);" class="custom-scrollbar"></router-view>
+    <!-- </keep-alive> -->
     <player></player>
   </div>
 </template>
@@ -29,6 +31,4 @@ export default {
 //   // overflow: hidden;
 
 // }
-
-
 </style>

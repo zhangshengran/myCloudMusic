@@ -1,16 +1,16 @@
 <template>
   <div class="header" style="-webkit-app-region: drag">
     <div class="header-left">
-      <img src alt class="logo">
+      <img src alt class="logo" />
 
       <p class="header-left-p no-drag" @click="goSelectPage()">网易云音乐</p>
     </div>
 
     <div class="header-middle">
       <div class="left no-drag">
-        <i class="iconfont iconzuojiantou"></i>
+        <i class="iconfont iconzuojiantou" style="color:white" @click="goPrePage"></i>
 
-        <i class="iconfont iconarrow-right"></i>
+        <i class="iconfont iconarrow-right" style="color:white" @click="goNextPage"></i>
       </div>
 
       <!-- @blur="isShowModel=false" -->
@@ -26,7 +26,7 @@
           @click="getHot"
           @blur="isShowModel=false"
           @focus="isShowModel=true"
-        >
+        />
 
         <i class="iconfont iconsearch" @click="searchClick"></i>
 
@@ -86,10 +86,20 @@ export default {
   },
   watch: {},
   methods: {
-    goSelectPage(){
-      this.$router.push('/selectPage')
-            // this.$router.push('/playPage')
-
+    goPrePage() {
+      console.log(this.$router.options.routes.length)
+      
+        this.$router.go(-1);
+      
+    },
+    goNextPage() {
+        console.log(this.$router.options.routes.length)
+      this.$router.go(1);
+      console.log(this.$router);
+    },
+    goSelectPage() {
+      this.$router.push("/selectPage");
+      // this.$router.push('/playPage')
     },
     ...mapActions(["getSongList"]),
     // ...mapMutations(['setChooseSong']),
@@ -133,7 +143,6 @@ export default {
 }
 
 .header {
-
   width: 100%;
   color: #eec1c1;
   position: fixed;
@@ -237,11 +246,10 @@ export default {
       color: white;
     }
   }
-  .header-left-p{
+  .header-left-p {
     cursor: pointer;
   }
 }
-
 </style>
  
 

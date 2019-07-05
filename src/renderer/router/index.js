@@ -40,7 +40,8 @@ export default new Router({
         children: [{
           path: '/selectPage/foundsong/gexingtuijian',
           name: 'gexingtuijian',
-          component: gexingtuijian
+          component: gexingtuijian,
+          meta:{keepAlive:true}
         }]
       },
       {

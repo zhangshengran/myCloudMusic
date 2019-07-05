@@ -1,13 +1,16 @@
 <template>
-<div class="middle">
-<leftBar></leftBar>
-<router-view style="margin-left:250px;width:100%"></router-view>
-</div></template>
+  <div class="middle">
+    <leftBar></leftBar>
+    <!-- <keep-alive> -->
+      <router-view style="margin-left:250px;width:100%"></router-view>
+    <!-- </keep-alive> -->
+  </div>
+</template>
 <script>
 import leftBar from "../components/leftBar";
 import searchMain from "../components/searchMain";
 export default {
-  components: {  leftBar, searchMain }
+  components: { leftBar, searchMain }
 };
 </script>
 <style lang='scss' scoped>
