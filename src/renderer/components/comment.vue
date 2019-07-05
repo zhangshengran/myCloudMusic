@@ -3,8 +3,13 @@
     <header>听友评论</header>
     <section>
       <div style="padding:5px 0">精彩评论</div>
-      <hr  style="color:#f0f0f0"/>
-      <div class="containerItem" v-for="(item, index) in hotComments" :key="index" style="margin: 20px 0;">
+      <hr style="color:#f0f0f0" />
+      <div
+        class="containerItem"
+        v-for="(item, index) in hotComments"
+        :key="index"
+        style="margin: 20px 0;"
+      >
         <div class="commentItem">
           <div class="left">
             <img :src="item.user.avatarUrl" alt />
@@ -27,7 +32,7 @@
             </div>
           </div>
         </div>
-          <hr  style="color:#f0f0f0"/>
+        <hr style="color:#f0f0f0" />
       </div>
     </section>
   </div>
@@ -38,7 +43,7 @@ import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 import { commentMusic } from "../api/api";
 export default {
   computed: {
-    ...mapGetters(["musicId"])
+    ...mapGetters(["SongDetail"])
   },
   data() {
     return {
@@ -46,17 +51,12 @@ export default {
     };
   },
   mounted() {
-    commentMusic(this.musicId).then(({ data }) => {
-      console.log(data.hotComments);
-      this.hotComments = data.hotComments;
-    });
-  },
-//  updated() {
-//     commentMusic(this.musicId).then(({ data }) => {
-//       console.log(data.hotComments);
-//       this.hotComments = data.hotComments;
-//     });
-//  },
+    if (this.SongDetail) {
+      commentMusic(this.SongDetail.id).then(({ data }) => {
+        this.hotComments = data.hotComments;
+      });
+    }
+  }
 };
 </script>
 <style lang='scss' scoped>

@@ -29,12 +29,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["musicId"])
+    ...mapState(['searchHistory']),
+    ...mapGetters(["SongDetail"])
   },
   mounted() {
-    getLyr(this.musicId).then(({ data }) => {
+      if(this.SongDetail){
+        console.log(111111111111111111111111111111111111)
+         getLyr(this.SongDetail.id).then(({ data }) => {
       var datalrc = data.lrc.lyric;
-      console.log(data);
       var { timeArr, lycArr } = lycAnalysis(String(datalrc));
       this.timeArr = timeArr;
       this.lycArr = lycArr;
@@ -45,12 +47,11 @@ export default {
         hand++;
       }
       // var lycDivList = that.$refs.lyc;
-
-      setInterval(() => {
+      try {
+           setInterval(() => {
         var lycDivList = that.$refs.lyc;
         var lycscroll = that.$refs.lycscroll;
         if (Vue.currentPlayTime - this.timeArr[hand] >= 0) {
-          // console.log(this.lycArr[hand]);
 
           if (hand > 0) {
             lycDivList[hand - 1].style.color = "";
@@ -59,14 +60,19 @@ export default {
           lycDivList[hand].style.color = "#c62f2f";
           lycDivList[hand].style.background = " #fafafa";
           hand++;
-          // console.log(lycscroll);
           if (hand > 5) {
             //歌词唱到第五句以后自动滚动下一句
             lycscroll.scrollTo(0, (hand - 5) * 42);
           }
         }
       }, 200);
+      } catch (error) {
+        console.log('歌词解析出错')
+      }
+   
     });
+      }
+   
   },
   created() {},
   methods: {}

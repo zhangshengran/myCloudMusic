@@ -30,7 +30,7 @@ export function lycAnalysis(lyc) {
         }else{
             lycArr.push(itemArr[itemArr.length-1]);
             let time = timeToSecond(itemArr[0].slice(1))
-            console.log(time)
+            // console.log(time)
             timeArr.push(time-0.4)//歌词提前0.4s
         }
        

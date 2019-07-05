@@ -69,7 +69,6 @@ export default {
 
     },
     goFM() {
-      console.log("fm");
       this.$router.push("/selectPage/fm");
     },
     goFoundSong() {

@@ -45,7 +45,7 @@ export default {
   mounted() {
     http.get("/search/hot").then(({ data }) => {
       this.hotList = data.result.hots;
-      console.log(this.hotList);
+     
     });
   },
   data() {
@@ -67,7 +67,7 @@ export default {
         http.get("/search/suggest", { keywords: val }).then(({ data }) => {
           this.songList = data.result;
         });
-        console.log(this.ownSearchName);
+      
       }, 300)(val);
     }
   },
@@ -78,7 +78,7 @@ export default {
       this.removeSearchHistory(index);
     },
     emitSong(songName) {
-      console.log("子组件发送");
+  
 
       this.$emit("chooseMusic", songName);
     }
@@ -89,11 +89,13 @@ export default {
 @import "../assets/common/common.scss";
 @import "../assets/common/icon.css";
 .modal {
+  
   border-radius: 5px;
   box-shadow: 2px 2px 3px $gray;
   position: absolute;
   top: 34px;
   left: 60px;
+  // z-index: 99;
   // width: 440px;
   // height: 300px;
   overflow: hidden;

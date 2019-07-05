@@ -38,12 +38,10 @@ export default {
     ...mapState(["songList", "musicIndex",'songUrl','isPlay'])
   },
   mounted() {
-    console.log("player", this.songList);
   },
   watch: {
     musicIndex(musicIndex) {
-      console.log("拿到的index为", musicIndex);
-      console.log(this.songList[this.musicIndex].id);
+    
       let musicId = this.songList[this.musicIndex].id;
       this.getMusicURL(musicId);
     }
@@ -56,13 +54,7 @@ export default {
        this.toggleIsPlay();
      
     },
-    // getMusicURL(musicIndex) {
-    //   http.get("/song/url", { id: musicIndex }).then(({ data }) => {
-    //     console.log(data);
-    //     this.url = data.data[0].url;
-    //     console.log("拿到的url为", this.url);
-    //   });
-    // }
+  
   }
 };
 </script>

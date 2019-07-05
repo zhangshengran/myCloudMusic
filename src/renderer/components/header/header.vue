@@ -100,7 +100,6 @@ export default {
     },
     test(e) {},
     getSongName(e) {
-      console.log("父组件收到", e);
       this.input = e;
       this.isShowModel = false;
       this.getSongList(this.input);

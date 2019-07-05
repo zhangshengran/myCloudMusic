@@ -12,7 +12,6 @@ export default {
     props:['songUrl','isPlay'],
     mounted() {
         setInterval(()=>{
-        //   console.log( this.$refs.audio.currentTime) 
           var currentTime = this.$refs.audio.currentTime;
           Vue.currentPlayTime = currentTime;
         },500)
@@ -25,7 +24,6 @@ export default {
             // this.$refs.audio.play();
         },
         isPlay(val){
-            // console.log( this.$refs.audio)
             if(val==true){
                  this.$refs.audio.pause();
             }else{

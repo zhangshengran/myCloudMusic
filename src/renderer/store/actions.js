@@ -32,7 +32,6 @@ var actions = {
   },
   async getLyc({ commit, state }){
     let Lyc = await getLyr(musicId);
-    console.log(Lyc)
     commit('getLyc',Lyc);
   }
 }
