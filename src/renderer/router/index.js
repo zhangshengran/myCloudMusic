@@ -6,6 +6,7 @@ import foundSong from '../components/foundSong'
 import playPage from '../pages/playPage'
 import selectPage from '../pages/selectPage'
 import gexingtuijian from '../components/gexingtuijian'
+import playlistdetail from '../components/playlistdetail'
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
         path: '/selectPage/searchmain',
         name: 'searchMain',
         component: searchMain
+      },
+      {
+        path:'/selectPage/playlistdetail',
+        name:'playlistdetail',
+        component:playlistdetail
       },
       {
         path: '/selectPage/foundsong',
@@ -48,7 +54,7 @@ export default new Router({
       name: 'playPage',
       component: playPage
     },
-
+   
 
     {
       path: '*',
