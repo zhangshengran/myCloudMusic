@@ -33,7 +33,7 @@
       </tr>
     </table>
   </div>
-</template>
+</template> 
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";

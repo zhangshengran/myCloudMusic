@@ -52,7 +52,10 @@ export default {
     personalized().then(({ data }) => {
       this.personalized = data.result.slice(0, 10);
     });
-  }
+  },
+  beforeDestroy() {
+  console.log('组件已销毁')
+  },
 };
 </script>
 <style <style lang='scss'>
@@ -83,6 +86,9 @@ export default {
           width: 130px;
         }
       }
+       .remditem:hover{
+         cursor: pointer;
+       }
     }
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="middle">
     <leftBar></leftBar>
-    <!-- <keep-alive> -->
+    <keep-alive>
       <router-view style="margin-left:250px;width:100%"></router-view>
-    <!-- </keep-alive> -->
+    </keep-alive>
   </div>
 </template>
 <script>

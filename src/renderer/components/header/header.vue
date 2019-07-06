@@ -87,15 +87,15 @@ export default {
   watch: {},
   methods: {
     goPrePage() {
-      console.log(this.$router.options.routes.length)
+      // console.log(this.$router.options.routes.length)
       
         this.$router.go(-1);
       
     },
     goNextPage() {
-        console.log(this.$router.options.routes.length)
+        // console.log(this.$router.options.routes.length)
       this.$router.go(1);
-      console.log(this.$router);
+      // console.log(this.$router);
     },
     goSelectPage() {
       this.$router.push("/selectPage");
