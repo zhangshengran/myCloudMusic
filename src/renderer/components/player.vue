@@ -5,56 +5,57 @@
         <i class="iconfont test iconshangyiqu" style="font-size:20px" @click="this.getPreMusic"></i>
       </div>
       <div>
-        <i class="iconfont " :class="{iconplay1:this.isPlay,iconzanting:!this.isPlay}" style="font-size:30px" @click="playMusic"></i>
+        <i
+          class="iconfont"
+          :class="{iconplay1:this.isPlay,iconzanting:!this.isPlay}"
+          style="font-size:30px"
+          @click="playMusic"
+        ></i>
       </div>
       <div>
         <i class="iconfont iconxiayiqu" style="font-size:20px" @click="this.getNextMusic"></i>
       </div>
     </div>
     <div class="middle">
-      <myAudio 
-      :songUrl='this.songUrl'
-      :isPlay='this.isPlay'
-       ></myAudio>
-   
+      <myAudio :songUrl="this.songUrl" :isPlay="this.isPlay"></myAudio>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-import myAudio from './myAudio'
+import myAudio from "./myAudio";
 import http from "../api";
 export default {
-  components:{myAudio},
+  components: { myAudio },
   data() {
     return {
       // isPlay:false
     };
-  },methods: {
- 
   },
+  methods: {},
   computed: {
-    ...mapState(["songList", "musicIndex",'songUrl','isPlay'])
+    ...mapState(["songList", "musicIndex", "songUrl", "isPlay", "playType",'localSongList'])
   },
-  mounted() {
-  },
+  mounted() {},
   watch: {
     musicIndex(musicIndex) {
-    
-      let musicId = this.songList[this.musicIndex].id;
-      this.getMusicURL(musicId);
+      if (this.playType == 0) {
+        let musicId = this.songList[this.musicIndex].id;
+        this.getMusicURL(musicId);
+      }else{
+        //返回给播放器本地音乐路径
+        this.setLocalSongURL(musicIndex);
+      }
     }
   },
   methods: {
-    ...mapMutations(['toggleIsPlay']),
-    ...mapActions(['getMusicURL','getNextMusic','getPreMusic']),
-    playMusic(){
+    ...mapMutations(["toggleIsPlay",'setLocalSongURL']),
+    ...mapActions(["getMusicURL", "getNextMusic", "getPreMusic"]),
+    playMusic() {
       //  this.isPlay = !this.isPlay;
-       this.toggleIsPlay();
-     
-    },
-  
+      this.toggleIsPlay();
+    }
   }
 };
 </script>
@@ -90,7 +91,7 @@ export default {
     display: flex;
     justify-content: space-around;
   }
-  .middle{
+  .middle {
     display: flex;
     align-items: center;
   }

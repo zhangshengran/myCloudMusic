@@ -44,6 +44,16 @@ export default {
       isActive: true
     };
   },
+  computed: {
+    ...mapState(["songList", "musicIndex"]) //拿到vuex中的搜索结果列表
+  },
+   watch: {
+    musicIndex() {
+      this.setChooseItemStyle();
+      console.log('musicIndex发生改变')
+    }
+  },
+  
   methods: {
     setChooseItemStyle() {
       var songList = this.$refs.songlist;
@@ -58,20 +68,13 @@ export default {
     },
     ...mapMutations(["setMusicIndex"]),
     chooseMusic(e, Index) {
-      this.setMusicIndex(Index);
-      this.setChooseItemStyle();
+      this.setMusicIndex(Index,0);
+      this.setChooseItemStyle();      //设置表格选择播放的背景变色
 
-      //设置表格选择播放的背景变色
+
     }
   },
-  watch: {
-    musicIndex() {
-      this.setChooseItemStyle();
-    }
-  },
-  computed: {
-    ...mapState(["songList", "musicIndex"]) //拿到vuex中的搜索结果列表
-  }
+ 
 };
 </script>
 <style lang='scss' scoped>

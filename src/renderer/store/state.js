@@ -7,6 +7,7 @@ const state = {
     songList:[],//搜索出來的列表
     localSongList:[],
     localDirPath:'',
+    playType:0,//音乐识别键，播放在线音乐为0,本地音乐为1
     musicIndex:'',//播放的是列表的第几个,通过songList和musicIndex就能确定当前播放的所有信息
     isPlay:false,//是否播放
     songUrl:'',//歌曲url

@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="seLoDir">请选择本地文件夹</button>
-    <div @click="seLoDirMic(item)" v-for="(item, index) in localSongList" :key="index">{{item}}</div>
+    <div @click="seLoDirMic(index)" v-for="(item, index) in localSongList" :key="index">{{item}}</div>
   </div>
 </template>
 
@@ -11,30 +11,29 @@ const { ipcRenderer: ipc } = require("electron");
 export default {
   data() {
     return {
-      ...mapState(["localSongList", "localDirPath"])
+        localSongList:[],
+      ...mapState(["localSongList", "localDirPath",'musicIndex'])
     };
   },
   mounted() {},
   watch: {
-      localSongList(val){
-          console.log('数据更新')
-      }
+    
   },
+    //   state.playType = 1;
   methods: {
-    ...mapMutations(["setLocalSongList", "setSongUrl", "setlocalDirPath"]),
+    ...mapMutations(["setLocalSongList", "setlocalDirPath",'setMusicIndex']),
     seLoDir() {
       ipc.send("open-directory-dialog", "openDirectory");
       ipc.on("select-dir-reply", (event, { dirPath, filesList }) => {
         this.setlocalDirPath(dirPath);
+        this.localSongList = filesList;
         // console.log(filesList)
         this.setLocalSongList(filesList);
       });
     },
-    seLoDirMic(item) {
-        
-      this.setSongUrl(item);
-      console.log(this.localDirPath + "\\" + item);
-      //  ipc.send("open-directory-dialog", "openDirectory");
+    seLoDirMic(index) {
+        this.setMusicIndex(index,1);
+   
     }
   }
 };

@@ -18,16 +18,27 @@ const mutations = {
 
         state.localSongList = localSongList;
     },
-    setMusicIndex(state, musicIndex) {
+    setMusicIndex(state, musicIndex,type) {
         state.musicIndex = musicIndex;
+        state.playType = type;
     },
     setlocalDirPath(state, localDirPath) {
         state.localDirPath = localDirPath;
     },
 
     setSongUrl(state, SongUrl) {
+
         state.songUrl = SongUrl;
     },
+
+    setLocalSongURL(state, index){
+    
+        state.songUrl = state.localDirPath +'\\'+ state.localSongList[index];
+    },
+    setplayType(state, type){
+        state.playType = type;
+    }, 
+
     getLyc(state, Lyc) {
         state.songLyr = Lyc
     },
@@ -57,6 +68,7 @@ const mutations = {
     removeSearchHistory(state, index) {
         state.searchHistory.splice(index, 1)
     },
+   
 
 }
 
