@@ -24,7 +24,7 @@
       <div class="line">
         <div class="line-flex">
           <i class="iconfont iconyinyue"></i>
-          <div class="mar-left">本地音乐</div>
+          <div class="mar-left" @click="goLocalMusic">本地音乐</div>
         </div>
       </div>
       <!-- <div>下载管理</div> -->
@@ -63,6 +63,10 @@ export default {
     ...mapGetters(["SongDetail"])
   },
   methods: {
+    goLocalMusic(){
+       this.$router.push("/selectPage/localmusic");
+      
+    },
     goPlayPage(){
            this.$router.push('/playPage')
 

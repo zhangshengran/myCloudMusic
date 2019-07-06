@@ -7,6 +7,7 @@ import playPage from '../pages/playPage'
 import selectPage from '../pages/selectPage'
 import gexingtuijian from '../components/gexingtuijian'
 import playlistdetail from '../components/playlistdetail'
+import localMusicPage from '../components/localMusicPage'
 Vue.use(Router)
 
 export default new Router({
@@ -28,9 +29,9 @@ export default new Router({
         component: searchMain
       },
       {
-        path:'/selectPage/playlistdetail',
-        name:'playlistdetail',
-        component:playlistdetail
+        path: '/selectPage/playlistdetail',
+        name: 'playlistdetail',
+        component: playlistdetail
       },
       {
         path: '/selectPage/foundsong',
@@ -41,21 +42,27 @@ export default new Router({
           path: '/selectPage/foundsong/gexingtuijian',
           name: 'gexingtuijian',
           component: gexingtuijian,
-          meta:{keepAlive:true}
+          meta: { keepAlive: true }
         }]
       },
       {
         path: '/selectPage/fm',
         name: 'fm-page',
         component: fm
-      },]
+      },
+      {
+        path: '/selectPage/localmusic',
+        name: 'localmusic',
+        component: localMusicPage
+      },
+    ]
     },
     {
       path: '/playPage',
       name: 'playPage',
       component: playPage
     },
-   
+
 
     {
       path: '*',

@@ -4,7 +4,7 @@
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain,dialog  } from 'electron'
 
 
 
@@ -68,3 +68,48 @@ ipcMain.on('max', e=> {
     }
 });
 ipcMain.on('close', e=> mainWindow.close());
+
+import { readdir } from 'fs';
+var musicPath = "E:\\音乐";
+ipcMain.on('ReadDir', (event, arg)=> {
+  readdir(musicPath, (err, files) => {
+   
+    event.sender.send('asynchronous-reply', files)
+
+})
+  console.log('主进程收到消息',arg)
+});
+
+
+
+
+ipcMain.on('open-directory-dialog', function (event,p) {
+    dialog.showOpenDialog({
+      properties: [p]
+    },function (files) {
+        if (files){// 如果有选中
+          // 发送选择的对象给子进程
+        let dirPath = files[0];
+      readdir(dirPath, (err, filesList) => {
+   
+       event.sender.send('select-dir-reply', {dirPath,filesList})
+
+        })
+
+  //         event.sender.send('selectedItem', files[0])
+        }
+    })
+  });
+  
+ 
+
+
+ function myReadDir(musicDirPath) {
+
+  return new Promise((res, rej) => {
+      readdir(musicDirPath, (err, files) => {
+          console.log(files)
+          res(files)
+      })
+  })
+}

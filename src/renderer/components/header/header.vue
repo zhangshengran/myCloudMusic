@@ -59,7 +59,7 @@
     </div>
   </div>
 </template>
-
+ 
 <script>
 const { ipcRenderer: ipc } = require("electron");
 import headerSearch from "../headerSearch";
