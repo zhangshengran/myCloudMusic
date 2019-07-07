@@ -1,5 +1,5 @@
 import Vue from 'vue';
-
+ 
 const mutations = {
     toggleIsPlay(state) { state.isPlay = !state.isPlay },
     setChooseSong(state, chooseSong) {
@@ -18,7 +18,8 @@ const mutations = {
 
         state.localSongList = localSongList;
     },
-    setMusicIndex(state, musicIndex,type) {
+    setMusicIndex(state,{musicIndex,type}) { 
+ 
         state.musicIndex = musicIndex;
         state.playType = type;
     },

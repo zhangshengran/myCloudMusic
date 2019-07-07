@@ -3,7 +3,7 @@
     <div class="middle-header">找到{{30}}首单曲</div>
 
       <tableList></tableList>
-
+      <songTableList :songList='songList' :setMusicIndex='setMusicIndex'></songTableList>
   </div> 
 </template>
 
@@ -11,40 +11,25 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import { constants } from "fs";
 import tableList from './base/tableList'
+import songTableList from './base/songTableList'
 export default {
-  components:{tableList},
+  components:{tableList,songTableList},
   data() {
     return {
       isActive: true
     };
   },
+  computed: {
+    ...mapState(["songList", "musicIndex"]) //拿到vuex中的搜索结果列表
+  },
+  
   methods: {
-    // setChooseItemStyle() {
-    //   var songList = this.$refs.songlist;
-    //   // songList[this.musicIndex];
-    //   songList.forEach(value => {
-    //     if (value.getAttribute("index") == this.musicIndex) {
-    //       value.style.background = "#e6e7ea";
-    //     } else {
-    //       value.style.background = "";
-    //     }
-    //   });
-    // },
-    // ...mapMutations(["setMusicIndex"]),
-    // chooseMusic(e, Index) {
-    //   this.setMusicIndex(Index);
-    //   this.setChooseItemStyle();
-
-    //   //设置表格选择播放的背景变色
-    // }
+     ...mapMutations(["setMusicIndex"]),
   },
   watch: {
-    // musicIndex() {
-    //   this.setChooseItemStyle();
-    // }
+
   },
   computed: {
-    // ...mapState(["songList", "musicIndex"]) //拿到vuex中的搜索结果列表
   }
 };
 </script>

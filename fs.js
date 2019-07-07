@@ -7,7 +7,15 @@ function myReadDir(musicPath) {
 
     return new Promise((res, rej) => {
         fs.readdir(musicPath, (err, files) => {
-            console.log(files)
+            files.forEach(element => {
+                fs.stat(musicPath + '\\' + element, (err, data) => {
+                    if (err) throw err;
+    
+                    console.log(data);
+                });
+            });
+           
+            // console.log(files)
         })
     })
 }
@@ -15,4 +23,11 @@ function myReadDir(musicPath) {
 
 
 
-myReadDir(musicPath)
+
+// myReadDir(musicPath)
+
+fs.stat(musicPath + '\\' + '《犬夜叉》插曲  《跨越时空的思念》.mp3', (err, data) => {
+    if (err) throw err;
+
+    console.log(data);
+});

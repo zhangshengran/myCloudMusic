@@ -22,7 +22,7 @@
           <i class="iconfont iconxin"></i>
           <i class="iconfont iconxiazai"></i>
         </td>
-        <td style="color:#0c73c2" :index="index" @dblclick="chooseMusic($event,index)">{{item.name}}</td>
+        <td style="color:#0c73c2" :index="index" @dblclick="chooseMusic(index)">{{item.name}}</td>
         <td>{{item.artists[0].name}}</td>
         <td>{{item.album.name}}</td>
         <td>{{item.duration}}</td>
@@ -47,14 +47,16 @@ export default {
   computed: {
     ...mapState(["songList", "musicIndex"]) //拿到vuex中的搜索结果列表
   },
-   watch: {
+  watch: {
     musicIndex() {
       this.setChooseItemStyle();
-      console.log('musicIndex发生改变')
+      console.log("musicIndex发生改变");
     }
   },
-  
+
   methods: {
+    ...mapMutations(["setMusicIndex"]),
+
     setChooseItemStyle() {
       var songList = this.$refs.songlist;
       // songList[this.musicIndex];
@@ -66,35 +68,31 @@ export default {
         }
       });
     },
-    ...mapMutations(["setMusicIndex"]),
-    chooseMusic(e, Index) {
-      this.setMusicIndex(Index,0);
-      this.setChooseItemStyle();      //设置表格选择播放的背景变色
-
-
+    chooseMusic(index) {
+      this.setMusicIndex({musicIndex:index,type:0});
+      this.setChooseItemStyle(); //设置表格选择播放的背景变色
     }
-  },
- 
+  }
 };
 </script>
 <style lang='scss' scoped>
 @import "../../assets/common/common.scss";
 @import "../../assets/common/icon.css";
-  .table {
-    table {
-      .el-progress__text {
-        display: none;
-      }
-      th {
-        line-height: 2.5;
-      }
-      td,
-      th {
-        text-align: center;
-      }
-      width: 100%;
+.table {
+  table {
+    .el-progress__text {
+      display: none;
     }
+    th {
+      line-height: 2.5;
+    }
+    td,
+    th {
+      text-align: center;
+    }
+    width: 100%;
   }
+}
 .songlist:hover {
   background: $gray;
   cursor: pointer;
