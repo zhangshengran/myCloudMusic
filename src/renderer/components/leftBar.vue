@@ -39,7 +39,8 @@
         </div>
       </div>
     </div>
-    <div class="detailMusic" v-if="this.SongDetail" @click="goPlayPage">
+    <div class="detailMusic" v-if="this.SongDetail && !this.playType" @click="goPlayPage">
+                                                <!-- playType为音乐识别键，0为在线音乐，本地音乐无法显示详情歌词页 -->
       <div class="left">
         <!-- <i class="iconfont iconwebicon311"></i> -->
 
@@ -60,7 +61,8 @@ import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["SongDetail"])
+    ...mapGetters(["SongDetail"]),
+    ...mapState(['playType'])
   },
   methods: {
     goLocalMusic(){

@@ -68,4 +68,14 @@ export function playlistDetail(listId){
   return http.get('playlist/detail',{id:listId});
 
 }
+  // id为音乐ID，cid为评论ID，t : 是否点赞 ,1 为点赞 ,0 为取消点赞，tpye: 数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型
+export function commentZan(id,cid,t=1,type=0){//默认点赞，给音乐单曲点赞
+  var params = {id:id,cid:cid,t:t,type:type};
+  return http.get('comment/like',params);
 
+}
+
+export function login(phone,password){
+  return http.get('/login/cellphone',{phone,password});
+
+}

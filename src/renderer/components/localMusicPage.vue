@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="seLoDir">请选择本地文件夹</button>
+     <el-button @click="seLoDir" class="choBtn">请选择本地文件夹</el-button>
+    <!-- <button @click="seLoDir">请选择本地文件夹</button> -->
     <div class="table">
       <table border="1">
         <tr>
@@ -93,6 +94,19 @@ export default {
 .songlist:hover {
   background: $gray;
   cursor: pointer;
+}
+.choBtn{
+  background: $red;
+  color:white;
+  padding: 5px 8px;
+
+}.choBtn:hover{
+  background:$hovred;
+  color:white;
+}
+.choBtn:visited{
+   background: $red;
+  color:white;
 }
 </style>
  

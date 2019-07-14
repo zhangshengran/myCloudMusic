@@ -3,7 +3,6 @@
     <div class="middle-header">找到{{30}}首单曲</div>
 
       <tableList></tableList>
-      <songTableList :songList='songList' :setMusicIndex='setMusicIndex'></songTableList>
   </div> 
 </template>
 
@@ -11,9 +10,8 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import { constants } from "fs";
 import tableList from './base/tableList'
-import songTableList from './base/songTableList'
 export default {
-  components:{tableList,songTableList},
+  components:{tableList},
   data() {
     return {
       isActive: true

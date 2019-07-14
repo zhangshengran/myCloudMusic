@@ -91,7 +91,13 @@ ipcMain.on('open-directory-dialog', function (event,p) {
           // 发送选择的对象给子进程
         let dirPath = files[0];
       readdir(dirPath, (err, filesList) => {
-   
+          // console.log(filesList)
+         
+          filesList = filesList.filter((item)=>{
+             if( /\.mp3$/.test(item)){
+               return true;
+             }
+          })
        event.sender.send('select-dir-reply', {dirPath,filesList})
 
         })
@@ -104,12 +110,12 @@ ipcMain.on('open-directory-dialog', function (event,p) {
  
 
 
- function myReadDir(musicDirPath) {
+//  function myReadDir(musicDirPath) {
 
-  return new Promise((res, rej) => {
-      readdir(musicDirPath, (err, files) => {
-          console.log(files)
-          res(files)
-      })
-  })
-}
+//   return new Promise((res, rej) => {
+//       readdir(musicDirPath, (err, files) => {
+//           console.log(files)
+//           res(files)
+//       })
+//   })
+// }

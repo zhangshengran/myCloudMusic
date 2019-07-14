@@ -47,7 +47,7 @@ export default {
         //返回给播放器本地音乐路径
         this.setLocalSongURL(musicIndex);
       }
-    }
+    } 
   },
   methods: {
     ...mapMutations(["toggleIsPlay",'setLocalSongURL']),

@@ -24,7 +24,7 @@
               <div class="right">
                 <span style="margin-right:8px;">
                   <i class="iconfont iconz-like"></i>
-                  <span class="like">({{item.likedCount}})</span>
+                  <span class="like" @click="like(item.commentId,index)">({{item.likedCount}})</span>
                 </span>
                 <span style="margin-right:8px;">分享</span>
                 <span>回复</span>
@@ -40,7 +40,8 @@
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-import { commentMusic } from "../api/api";
+import { commentMusic, commentZan } from "../api/api";
+import { constants } from "fs";
 export default {
   computed: {
     ...mapGetters(["SongDetail"])
@@ -55,6 +56,19 @@ export default {
       commentMusic(this.SongDetail.id).then(({ data }) => {
         this.hotComments = data.hotComments;
       });
+    }
+  },
+  methods: {
+    like(commentId, index) {
+
+  
+      // commentZan(this.SongDetail.id,commentId).then((data)=>{console.log(data)})
+      commentZan(this.SongDetail.id,commentId).then(({data})=>{
+       
+        if(data.code==200){
+           this. hotComments[index].likedCount++;
+        }
+      })
     }
   }
 };

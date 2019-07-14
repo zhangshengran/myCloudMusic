@@ -1,5 +1,7 @@
 <template>
   <div class="header" style="-webkit-app-region: drag">
+    <login v-show="showLoginControl" @LoginControl="LoginControl" v-if="!hasLogin"></login>
+
     <div class="header-left">
       <img src alt class="logo" />
 
@@ -33,12 +35,23 @@
         <headerSearch v-show="isShowModel" :searchSong="this.input" @chooseMusic="getSongName"></headerSearch>
       </div>
     </div>
-
     <div class="header-right">
+      <hasLogin v-show="hasLoginShow" @isShowHasLogin = 'hasLoginShow = false;hasLogin = false'></hasLogin>
       <div class="login no-drag">
-        <i class="iconfont iconwo"></i>
+        <img
+          v-if="userInfoImg"
+          :src="userInfoImg"
+          alt
+          style="width: 24px; height: 24px;border-radius: 50%;"
+        />
+        <img
+          v-else
+          src="../../assets/static/user.png"
+          alt
+          style="width: 24px; height: 24px;border-radius: 50%;"
+        />
 
-        <p>未登录</p>
+        <p @click="login" >{{userInfo?userInfo:'未登录'}}</p>
       </div>
 
       <div class="vip margin-left no-drag">开通VIP</div>
@@ -67,9 +80,13 @@ import http from "../../api";
 import { constants } from "fs";
 import debounce from "../../utils/utils";
 import { mapState, mapMutations, mapActions } from "vuex";
+import login from "../../pages/login";
+import hasLogin from "../../pages/hasLogin";
 export default {
   components: {
-    headerSearch
+    headerSearch,
+    login,
+    hasLogin
   },
   computed: {
     ...mapState([
@@ -77,23 +94,58 @@ export default {
       "chooseSong"
     ])
   },
-
+  mounted() {
+    //一上来先判断用户是否登录，若已经登录过，则直接从本地存储拉取用户信息
+    var userData = localStorage.getItem("userData");
+    if (userData) {
+       this.hasLogin = true;
+      let userData = JSON.parse(localStorage.getItem("userData"));
+      this.userInfo = userData.profile.nickname;
+      this.userInfoImg = userData.profile.avatarUrl;
+    }
+  },
   data() {
     return {
       input: "",
-      isShowModel: false //控制搜索模态框是否显示
+      isShowModel: false, //控制搜索模态框是否显示,
+      showLoginControl: false,//控制登录页面是否显示
+      userInfoImg: "",
+      userInfo: "",
+      hasLogin: false, //是否已经登录
+      hasLoginShow: false//控制登录信息页面是否显示
     };
   },
   watch: {},
   methods: {
+    LoginControl(control, isLoginOK) {
+      this.showLoginControl = control;
+      console.log("父组件接受", control, isLoginOK);
+      if (isLoginOK) {
+        this.hasLogin = true;
+        let userData = JSON.parse(localStorage.getItem("userData"));
+        this.userInfo = userData.profile.nickname;
+        this.userInfoImg = userData.profile.avatarUrl;
+      }
+    },
+    login() {
+       //如果已经登录则显示信息页，未登录则显示登录页
+       console.log(1111)
+      if (this.hasLogin) {
+         this.hasLoginShow = true;//
+         
+           console.log(222222)
+      } else {
+          console.log(3333)
+        this.showLoginControl = true;
+      }
+    },
     goPrePage() {
       // console.log(this.$router.options.routes.length)
-      
-        this.$router.go(-1);
-      
+
+      this.$router.go(-1);
     },
     goNextPage() {
-        // console.log(this.$router.options.routes.length)
+      // console.log(this.$router.options.routes.length)
       this.$router.go(1);
       // console.log(this.$router);
     },
@@ -214,6 +266,7 @@ export default {
     }
   }
   .header-right {
+    position: relative;
     margin-left: 40px;
     .margin-left {
       margin-left: 20px;
